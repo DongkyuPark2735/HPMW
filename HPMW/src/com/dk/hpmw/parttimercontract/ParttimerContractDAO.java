@@ -39,6 +39,40 @@ public class ParttimerContractDAO {
 		return conn;
 	}
 	
+// -- 파트타이머 근로계약서 총 갯수 : int 	parttimerContractTotcnt
+	public int parttimerContractTotcnt() {
+		int cnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) FROM PARTTIMERCONTRACT";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return cnt;
+	}
+	
+	
+	
+	
+	
 //	-- 파트타이머 근로계약서 목록 보기 : ArrayList<ParttimerContractDTO> listParttimerContract(int startRow, int endRow)
 //	-- 파트타이머 목록 보기 :  ArrayList<ParttimerContractDTO> listParttimerContract(int startRow, int endRow)
 	public ArrayList<ParttimerContractDTO> listParttimerContract(int startRow, int endRow) {

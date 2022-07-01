@@ -51,7 +51,7 @@
 						</ul>
 						<ul>
 							<li><a href=#>${departmenthead.mname } 님 </a></li>
-							<li><a href=#>파트타이머 관리</a></li>
+							<li><a href="${conPath }/ptEmpConList.do">파트타이머 관리 </a></li>
 							<li><a href="${conPath }/managerList.do">매니저 관리</a></li>
 							<li><a href="${conPath }/empContractView.do">근로계약서 서식 관리</a></li>
 							<li><a href="${conPath }/logout.do">로그아웃</a></li>
@@ -71,7 +71,7 @@
 						</ul>
 						<ul>
 							<li><a href=#>${manager.mname } 님 </a></li>
-							<li><a href=#>파트타이머 관리 </a></li>
+							<li><a href="${conPath }/ptEmpConList.do">파트타이머 관리 </a></li>
 							<li><a href="${conPath }/logout.do">로그아웃</a></li>
 						</ul>
 					</div>

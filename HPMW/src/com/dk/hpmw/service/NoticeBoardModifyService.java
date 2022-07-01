@@ -18,47 +18,54 @@ import com.dk.hpmw.noticeboard.NoticeBoardDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class NoticeBoardWriteService implements Service {
+public class NoticeBoardModifyService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-
 		String path = request.getRealPath("noticeBoardFile");
 		int maxSize = 1024*1024*100; 
 		MultipartRequest mRequest = null;
 		String fFileName = "";
+		String oldnbfilename = "";
+		
 		try {
 			mRequest = new MultipartRequest(request, path, maxSize, "utf-8", new DefaultFileRenamePolicy());
 			Enumeration<String> params = mRequest.getFileNames();
 			String param = params.nextElement();
 			fFileName = mRequest.getFilesystemName(param);
-			
+			oldnbfilename = mRequest.getParameter("oldnbfilename");
+			if(fFileName==null) {
+				fFileName = oldnbfilename;
+			}
 			HttpSession session = request.getSession();
 			ManagerDTO manager = (ManagerDTO)session.getAttribute("manager");
+			request.setAttribute("pageNum", mRequest.getParameter("pageNum")); 
+			
 			if(manager!=null) {
 				int mno = manager.getMno();
+				int nbno = Integer.parseInt(mRequest.getParameter("nbno"));
 				String mbtitle = mRequest.getParameter("nbtitle");
 				String mbcontent = mRequest.getParameter("nbcontent");
 				NoticeBoardDAO nbdao = NoticeBoardDAO.getInstance();
 				NoticeBoardDTO nbdto = new NoticeBoardDTO();
+				nbdto.setNbno(nbno);
 				nbdto.setMno(mno);
 				nbdto.setNbtitle(mbtitle);
 				nbdto.setNbcontent(mbcontent);
 				nbdto.setNbfilename(fFileName);
-				int result = nbdao.insertNoticeBoard(nbdto);
-				if(result == NoticeBoardDAO.NoticeBoardInsetSUCCESS) { 
-					request.setAttribute("noticeBoardResult", "글쓰기 성공");
+				int result = nbdao.modifyNoticeBoard(nbdto);
+				if(result == NoticeBoardDAO.NoticeBoardModifySUCCESS) { 
+					request.setAttribute("noticeBoardResult", "글수정 성공");
 				}else {
-					request.setAttribute("noticeBoardResult", "글쓰기 실패");
+					request.setAttribute("noticeBoardResult", "글수정 실패");
 				}
 			}
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
-			request.setAttribute("noticeBoardResult", "글쓰기 실패");
+			request.setAttribute("noticeBoardResult", "글수정 실패");
 		}
 
-		
-		if(fFileName!=null) {
+		if(fFileName!=null && fFileName.equals(oldnbfilename)) {
 			InputStream  is = null;
 			OutputStream os = null;
 			try {
@@ -80,7 +87,8 @@ public class NoticeBoardWriteService implements Service {
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
-			}
+			} 
 		}
 	}
+
 }

@@ -78,9 +78,9 @@
 			<tr>
 				<th>행사 번호</th>
 				<th>행사 명</th>
-				<th>상세정보</th>
+				<th>행사 상세정보</th>
 				<th>행사 시작일</th>
-				<th>행사구분</th>
+				<th>행사 유형</th>
 				<th>작성자</th>
 			</tr>
 			<c:if test="${empty eventsList}">
@@ -101,6 +101,11 @@
 						<td>${eventsLists.mno }</td>
 					</tr>
 				</c:forEach>		
+					<tr>
+						<td colspan="6">
+							<a href="${conPath }/eventsBoardList.do">행사 더보기 </a>
+						</td>
+					</tr>
 			</c:if>
 		</table>
 		

@@ -18,10 +18,9 @@
 <script>/* 글 상세보기 리스트 클릭시  */
 	$(document).ready(function() {
 		$('.noticeBoarddetail').click(function(){
-			var nbno = Number($(this).prevUntil(".noticeBoardNbno").text());
-			alert(nbno);
+			var nbno = Number($(this).siblings('.noticeBoardNbno').text());
 			if(!isNaN(nbno)){
-				location.href = '${conPath}/noticeBoardContentDetail?nbno='+nbno+'&pageNum=${pageNum}';
+				location.href = '${conPath}/noticeBoardContentDetail.do?nbno='+nbno+'&pageNum=${pageNum}';
 			}
 		});
 	});
@@ -36,6 +35,21 @@
 			</script>
 		</c:if>
 		<c:if test='${noticeBoardResult eq "글쓰기 실패"}'>
+			<script>
+				alert('${noticeBoardResult}');
+				history.back();
+			</script>
+		</c:if>
+	</c:if>
+
+	<!-- 글수정 후 메시지 출력  -->
+	<c:if test="${not empty noticeBoardResult }">
+		<c:if test='${noticeBoardResult eq "글수정 성공"}'>
+			<script>
+				alert('${noticeBoardResult}');
+			</script>
+		</c:if>
+		<c:if test='${noticeBoardResult eq "글수정 실패"}'>
 			<script>
 				alert('${noticeBoardResult}');
 				history.back();
@@ -66,9 +80,6 @@
 				<td>
 					<c:if test="${not empty manager }">
 						<a href="${conPath }/noticeBoardWriteView.do">글쓰기</a>
-					</c:if>
-					 <c:if test="${empty manager }">
-						<a href="${conPath }/loginView.do">글쓰기는 사용자 로그인 이후에만 가능합니다</a>
 					</c:if>
 				</td>
 			</tr>

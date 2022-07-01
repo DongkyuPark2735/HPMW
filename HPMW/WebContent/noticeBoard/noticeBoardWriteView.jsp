@@ -28,8 +28,6 @@
 					$('.lmitContentLength').html('<b color="red">'+contentlength+'/4000</b>')
 				};
 			});
-			
-			
 		});
 	</script>
 </head>

@@ -21,7 +21,7 @@
 		<!-- 해더 -->
 	<jsp:include page="../main/header.jsp" />
 			<table>
-				<caption>글쓰기</caption>
+				<caption>${noticBoardDetail.nbno }번 공지사항 상세보기</caption>
 				<tr>
 					<td>제목</td>
 					<td>${noticBoardDetail.nbtitle }</td>
@@ -36,7 +36,9 @@
 				</tr>
 				<tr>
 					<td>첨부파일</td>
-					<td>${noticBoardDetail.nbfilename }</td>
+					<td>
+						<img src="${conPath }/noticeBoardFile/${noticBoardDetail.nbfilename }" width="300" height="300"> 
+					</td>
 				</tr>
 				<tr>
 					<td>조회수</td>
@@ -49,7 +51,8 @@
 				<tr>
 					<td colspan="2">
 						<c:if test="${manager.mno eq noticBoardDetail.mno }">
-							<input type="button" value="글수정" class="btn">
+							<input type="button" value="글수정" class="btn"
+										 onclick="location.href='${conPath}/noticeBoardModifyView.do?nbno=${noticBoardDetail.nbno }&pageNum=${pageNum }&mno=${manager.mno }'" >
 							<input type="button" value="글삭제" 
 										 onclick="location.href='${conPath}/noticeBoardDelete.do?nbno=${noticBoardDetail.nbno }&pageNum=${pageNum }&mno=${manager.mno }'">
 						</c:if>

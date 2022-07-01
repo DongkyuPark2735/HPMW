@@ -153,7 +153,6 @@ public class EmployContractDAO {
 			pstmt.setString(3, ecdto.getEcno());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
 		} finally {
 			try {
 				if (pstmt != null)
@@ -161,12 +160,10 @@ public class EmployContractDAO {
 				if (conn != null)
 					conn.close();
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
 			}
 		}
 		return result ;
 	}
-	
 	
 //	근로계약서 삭제 : int deleteEmployContract(String ecno)
 	public int deleteEmployContract(String ecno) {
