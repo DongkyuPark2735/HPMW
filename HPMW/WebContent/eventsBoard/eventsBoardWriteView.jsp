@@ -50,8 +50,7 @@
 </head>
 <body>
 <jsp:include page="../main/header.jsp" />
-		<form action="${conPath}/eventsBoardWrite.do?pageNum=${pageNum }" method="post">
-			<input type="hidden" name="pageNum" value="${pageNum }">
+		<form action="${conPath}/eventsBoardWrite.do" method="post">
 			<table>
 				<caption>행사 입력</caption>
 				<tr>

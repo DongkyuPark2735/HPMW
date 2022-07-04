@@ -30,37 +30,31 @@
 	<c:if test="${not empty EventsInsertResult }">
 		<c:if test='${EventsInsertResult eq "행사 입력 되었습니다."}'>
 			<script>
-				alert('${EventsInsertResult}');
+				alert('${EventsInsertResult }');
 			</script>
 		</c:if>
 		<c:if test='${EventsInsertResult eq "행사 입력 실패하였습니다."}'>
 			<script>
-				alert('${EventsInsertResult}');
+				alert('${EventsInsertResult }');
 				history.back();
 			</script>
 		</c:if>
 	</c:if>
-
-	<!-- 행사 수정 후 메시지 출력  -->
+<!-- 행사 수정 후 메시지 출력  -->
 	<c:if test="${not empty EventsModifyResult }">
-			<script>
-				alert('${EventsModifyResult}');
-			</script>
-			<script>
-				alert('${evtitle+" 행사 수정 성공"}');
-			</script>
-		<c:if test='${EventsModifyResult eq (evtitle+" 행사 수정 성공")}'>
+		<c:if test='${EventsModifyResult eq "행사가 수정되었습니다."}'>
 			<script>
 				alert('${EventsModifyResult}');
 			</script>
 		</c:if>
-		<c:if test='${EventsModifyResult eq (evtitle+" 행사 수정 실패")}'>
+		<c:if test='${EventsModifyResult eq "행사 수정 실패하였습니다."}'>
 			<script>
 				alert('${EventsModifyResult}');
 				history.back();
 			</script>
 		</c:if>
 	</c:if>
+	
 	
 	<!-- 행사 삭제 후 메시지 출력  -->
 	<c:if test="${not empty EventsDeleteResult }">
@@ -84,7 +78,7 @@
 			<tr>
 				<td>
 					<c:if test="${not empty manager }">
-						<a href="${conPath }/eventsBoardWriteView.do?pageNum=${pageNum }">행사 입력</a>
+						<a href="${conPath }/eventsBoardWriteView.do">행사 입력</a>
 					</c:if>
 				</td>
 			</tr>

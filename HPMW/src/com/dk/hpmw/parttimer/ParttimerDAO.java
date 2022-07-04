@@ -67,7 +67,7 @@ public class ParttimerDAO {
 	}
 	
 //	-- 파트타이머 아이디 비밀번호 찾기 : ParttimerDTO SearchPtidPtpw(int ptid, String ptname)
-	public ParttimerDTO SearchPtidPtpw(String ptid, String ptname){
+	public ParttimerDTO searchPtidPtpw(String ptid, String ptname){
 		ParttimerDTO pdto = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -99,10 +99,56 @@ public class ParttimerDAO {
 		}
 		return pdto;
 	}
-	
-
-	
-	
+//	-- 파트타이머 근로계약서 작성후 ptempconchek 수정
+	public int insertParttimerPtempconchek(String ptid) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = ParttimerLoginFAIL;
+		String sql = "UPDATE PARTTIMER SET PTEMPCONCHEK = 1 WHERE PTID = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ptid);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
+	}
+//	-- 파트타이머 근로계약서 작성후 ptempconchek 0으로 수정
+	public int deleteParttimerPtempconchek(String ptid) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = ParttimerLoginFAIL;
+		String sql = "UPDATE PARTTIMER SET PTEMPCONCHEK = 0 WHERE PTID = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ptid);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
+	}
 }
 
 

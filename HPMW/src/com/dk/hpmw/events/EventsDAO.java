@@ -112,6 +112,8 @@ public class EventsDAO {
 		return evdtoArr;
 	}
 	
+		
+	
 //행사 상세보기 DTO가져오기 : EventsDTO detailEvents(int evno)
 	public EventsDTO detailEvents(String evno) {
 		EventsDTO edto = null;
@@ -147,6 +149,43 @@ public class EventsDAO {
 			}
 		}
 		return edto;
+	}
+
+// 당일 행사 목록 가져오기 : ArrayList<EventsDTO> listDailyEvents()
+	public ArrayList<EventsDTO> listDailyEvents() {
+		ArrayList<EventsDTO> evdtoArr = new ArrayList<EventsDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM EVENTS WHERE EVSTARTDATE = TO_DATE(SYSDATE, 'YY/MM/DD')";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String evno = rs.getString("evno");
+				String evtitle = rs.getString("evtitle");;
+				String evdetail = rs.getString("evdetail");;
+				Date evstartdate = rs.getDate("evstartdate");
+				int etno = rs.getInt("etno");
+				int mno = rs.getInt("mno");
+				evdtoArr.add(new EventsDTO(evno, evtitle, evdetail, evstartdate, etno, mno) );
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return evdtoArr;
 	}
 	
 //-- 행사 등록 : int insertEvents(EventsDTO edto)
@@ -246,6 +285,8 @@ public class EventsDAO {
 	
 	
 	
+	
+
 }
 
 

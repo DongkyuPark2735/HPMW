@@ -37,12 +37,12 @@ public class EventsBoardListService implements Service {
 		if(endPage>pageCnt) {
 			endPage = pageCnt;
 		}
+		
 		request.setAttribute("BLOCKSIZE", BLOCKSIZE);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCnt", pageCnt);
 		request.setAttribute("totCnt", totCnt); // totCnt는 없으면 size()
 		request.setAttribute("pageNum", currentPage);
-		
 	}
 }

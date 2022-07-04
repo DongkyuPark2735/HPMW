@@ -1,6 +1,7 @@
 package com.dk.hpmw.parttimercontract;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.dk.hpmw.parttimer.ParttimerDTO;
 
 public class ParttimerContractDAO {
 	public static final int ParttimerContractDeleteFAIL = 0;
@@ -70,9 +73,6 @@ public class ParttimerContractDAO {
 	}
 	
 	
-	
-	
-	
 //	-- 파트타이머 근로계약서 목록 보기 : ArrayList<ParttimerContractDTO> listParttimerContract(int startRow, int endRow)
 //	-- 파트타이머 목록 보기 :  ArrayList<ParttimerContractDTO> listParttimerContract(int startRow, int endRow)
 	public ArrayList<ParttimerContractDTO> listParttimerContract(int startRow, int endRow) {
@@ -106,7 +106,8 @@ public class ParttimerContractDAO {
 				int ptworktime = rs.getInt("ptworktime");
 				int pthourlywage = rs.getInt("pthourlywage");
 				int pttotalpay = rs.getInt("pttotalpay");
-				pcdtoArr.add(new ParttimerContractDTO(ptconno, ptid, ptname, pttel, ptemail, ptaddress, btno, ptaccountno, evno, ptstatus, ptworktime, pthourlywage, pttotalpay));
+				Date ptrdate = rs.getDate("ptrdate");
+				pcdtoArr.add(new ParttimerContractDTO(ptconno, ptid, ptname, pttel, ptemail, ptaddress, btno, ptaccountno, evno, ptstatus, ptworktime, pthourlywage, pttotalpay, ptrdate));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -152,7 +153,8 @@ public class ParttimerContractDAO {
 				int ptworktime = rs.getInt("ptworktime");
 				int pthourlywage = rs.getInt("pthourlywage");
 				int pttotalpay = rs.getInt("pttotalpay");
-				pcdto = new ParttimerContractDTO(ptconno, ptid, ptname, pttel, ptemail, ptaddress, btno, ptaccountno, evno, ptstatus, ptworktime, pthourlywage, pttotalpay);
+				Date ptrdate = rs.getDate("ptrdate");
+				pcdto = new ParttimerContractDTO(ptconno, ptid, ptname, pttel, ptemail, ptaddress, btno, ptaccountno, evno, ptstatus, ptworktime, pthourlywage, pttotalpay, ptrdate);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -351,10 +353,127 @@ public class ParttimerContractDAO {
 		}
 		return result;
 	}
+//	-- 파트타이머 근로계약서 마감 수정 : int modifyParttimerPtstatus(String ptconno)
+	public int modifyParttimerPtstatus(String ptconno) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = ParttimerContractInsetFAIL;
+		String sql = "UPDATE PARTTIMERCONTRACT SET PTSTATUS = 0 " + 
+				"                        WHERE PTCONNO = ? ";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ptconno);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
+	}
 
-	
-	
-	
+//	-- id와 pw로  파트타이머용 근로계약서 상세보기  : ParttimerContractDTO detailParttimerContract(String ptid, String ptname)
+	public ParttimerContractDTO detailParttimerContract(String ptid, String ptname) {
+		ParttimerContractDTO pcdto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT PC.*, P.PTEMPCONCHEK " + 
+				"    FROM PARTTIMER P ,PARTTIMERCONTRACT PC " + 
+				"    WHERE P.PTID = PC.PTID AND PC.PTID = ? AND PC.PTNAME = ? "
+				+ " AND PC.PTRDATE = TO_DATE(SYSDATE, 'YY/MM/DD')";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ptid);
+			pstmt.setString(2, ptname);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				String ptconno = rs.getString("ptconno");
+				String pttel = rs.getString("pttel");
+				String ptemail = rs.getString("ptemail");
+				String ptaddress = rs.getString("ptaddress");
+				int btno = rs.getInt("btno");
+				String ptaccountno = rs.getString("ptaccountno");
+				String evno = rs.getString("evno");
+				int ptstatus = rs.getInt("ptstatus");
+				int ptworktime = rs.getInt("ptworktime");
+				int pthourlywage = rs.getInt("pthourlywage");
+				int pttotalpay = rs.getInt("pttotalpay");
+				Date ptrdate = rs.getDate("ptrdate");
+				pcdto = new ParttimerContractDTO(ptconno, ptid, ptname, pttel, ptemail, ptaddress, btno, ptaccountno, evno, ptstatus, ptworktime, pthourlywage, pttotalpay, ptrdate);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return pcdto;
+	}
+//	-- id로  파트타이머용 근로계약서 상세보기  : ParttimerContractDTO detailParttimerContract(String ptid, String ptname)
+	public ArrayList<ParttimerContractDTO> detailIDParttimerContract(String ptid) {
+		ArrayList<ParttimerContractDTO> partDtoarr = new ArrayList<ParttimerContractDTO>();
+		ParttimerContractDTO pcdto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT PC.*, P.PTEMPCONCHEK FROM PARTTIMER P ,PARTTIMERCONTRACT PC " + 
+									" WHERE P.PTID = PC.PTID AND PC.PTID = ? " + 
+									" AND PC.PTRDATE = TO_DATE(SYSDATE, 'YY/MM/DD')";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ptid);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String ptname = rs.getString("ptname");
+				String ptconno = rs.getString("ptconno");
+				String pttel = rs.getString("pttel");
+				String ptemail = rs.getString("ptemail");
+				String ptaddress = rs.getString("ptaddress");
+				int btno = rs.getInt("btno");
+				String ptaccountno = rs.getString("ptaccountno");
+				String evno = rs.getString("evno");
+				int ptstatus = rs.getInt("ptstatus");
+				int ptworktime = rs.getInt("ptworktime");
+				int pthourlywage = rs.getInt("pthourlywage");
+				int pttotalpay = rs.getInt("pttotalpay");
+				Date ptrdate = rs.getDate("ptrdate");
+				partDtoarr.add(new ParttimerContractDTO(ptconno, ptid, ptname, pttel, ptemail, ptaddress, btno, ptaccountno, evno, ptstatus, ptworktime, pthourlywage, pttotalpay, ptrdate));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return partDtoarr;
+	}
 	
 	
 	

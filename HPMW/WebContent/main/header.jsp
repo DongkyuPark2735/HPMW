@@ -36,6 +36,14 @@
 </script>
 </head>
 <body>
+	<!-- 파트타이머 로그인 오류 메시지 -->
+	<c:if test="${not empty parttimerLoginMSG }">
+		<script>
+			alert('${parttimerLoginMSG}');
+			history.back();
+		</script>
+	</c:if>
+	
 	<article>
 		<header>
 			<c:if test="${not empty manager }">
@@ -80,6 +88,12 @@
 		
 			<!-- 파트타이머 일떄 헤더 -->
 			<c:if test="${not empty parttimer }">
+				<c:if test="${parttimer.ptempconchek eq 0 }">
+					<script>
+						alert("근로계약서를 먼저 작성해야 합니다. 근로계약서 페이지로 이동합니다.");
+						location.href='${conPath}/ptWriteEmpConView.ptdo';
+					</script>
+				</c:if>
 				<div class="headerBarRight">
 					<ul>
 						<li>
@@ -89,8 +103,9 @@
 						</li>
 					</ul>
 					<ul>
-<%-- 						<li><a href=#>${parttimer.ptname } 님 </a></li> --%>
-						<li><a href=#>내 정보</a></li>
+						<li><a href=#>${parttimer.ptid } 님 </a></li>
+						<li><a href="${conPath }/ptEmpConList.do">나의 행사 보기</a></li>
+						<li><a href="${conPath }/ptWriteEmpConView.ptdo">나의 근로계약서 보기</a></li>
 						<li><a href="${conPath }/logout.do">로그아웃</a></li>
 					</ul>
 				</div>

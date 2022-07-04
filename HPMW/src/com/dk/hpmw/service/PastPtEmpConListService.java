@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.dk.hpmw.parttimercontract.ParttimerContractDAO;
 import com.dk.hpmw.parttimercontract.ParttimerContractDTO;
 
-public class PtEmpConListService implements Service {
+public class PastPtEmpConListService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -42,8 +42,9 @@ public class PtEmpConListService implements Service {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCnt", pageCnt);
-		request.setAttribute("totCnt", totCnt); // totCnt는 없으면 size()
+		request.setAttribute("totCnt", totCnt); 
 		request.setAttribute("pageNum", currentPage);
 	}
+
 
 }

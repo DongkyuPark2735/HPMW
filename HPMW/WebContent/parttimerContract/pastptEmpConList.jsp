@@ -27,59 +27,11 @@
 </script>
 </head>
 <body>
-	<!-- 파트타이머 근로계약서 행사 입력 후 메시지 출력  -->
-	<c:if test="${not empty partTimerInsertEventsResult }">
-		<c:if test='${partTimerInsertEventsResult eq "행사가 할당되었습니다."}'>
-			<script>
-				alert('${partTimerInsertEventsResult}');
-			</script>
-		</c:if>
-		<c:if test='${partTimerInsertEventsResult eq "행사 할당 실패하였습니다."}'>
-			<script>
-				alert('${partTimerInsertEventsResult}');
-				history.back();
-			</script>
-		</c:if>
-	</c:if>
-
-	<!-- 파트타이머 마감처리후 메시지 출력-->
-	<c:if test="${not empty parttimerSubmitResult }">
-		<c:if test='${parttimerSubmitResult eq "해당 근로계약서 마감처리 되었습니다."}'>
-			<script>
-				alert('${parttimerSubmitResult}');
-			</script>
-		</c:if>
-		<c:if test='${parttimerSubmitResult eq "해당 근로계약서 마감처리 실패하였습니다."}'>
-			<script>
-				alert('${parttimerSubmitResult}');
-				history.back();
-			</script>
-		</c:if>
-	</c:if>
-
-	<!-- 파트타이머 근로계약서 급여입력 실패 메시지-->
-	<c:if test="${not empty parttimerHourlyWageResult }">
-		<script>
-			alert('${parttimerHourlyWageResult}');
-			history.back();
-		</script>
-	</c:if>
-	
 	<jsp:include page="../main/header.jsp" />
 	<!-- 헤더  -->
 	<div id="content_form">
-		<table>
-			<tr>
-				<td>
-<%-- 					<c:if test="${not empty manager }"> --%>
-<%-- 						<a href="${conPath }/eventsBoardWriteView.do?pageNum=${pageNum }">행사 입력</a> --%>
-<%-- 					</c:if> --%>
-				</td>
-			</tr>
-		</table>
-		<br>
-		<h3>파트타이머 근로계약서 게시판</h3>
-		<input type="button" value="지난 근로계약서 보기" onclick="location.href='${conPath }/pastptEmpConList.do'">
+		<h3> 마감된 근로계약서 목록 </h3>
+		<input type="button" value="당일 근로계약서 보기" onclick="location.href='${conPath }/ptEmpConList.do'">
 		<table>
 			<tr>
 				<th>근로계약서 번호</th>
@@ -87,26 +39,24 @@
 				<th>파트타이머 이름</th>
 				<th>파트타이머 전화번호</th>
 				<th>행사 번호</th>
-				<th>근로계약서 작성 날짜</th>
 				<th>마감 여부</th>
 			</tr>
 			<c:if test="${totCnt==0 }">
 				<tr>
-					<td colspan="6">당일 계약서를 작성한 파트타이머가 없습니다</td>
+					<td colspan="6">지난 근로계약서가 없습니다.</td>
 				</tr>
 			</c:if>
-			<!-- 파트타이머 당일 목록 출력 -->
+			<!-- 파트타이머 지난 목록 출력 -->
 			<c:if test="${totCnt!=0 }">
 				<c:forEach items="${pcContractList }" var="pcContractLists">
 					<fmt:formatDate var="sysdateTemp" value="${sysdate }" pattern="yyyy-MM-dd"/>
-					<c:if test="${pcContractLists.ptrdate eq sysdateTemp}">
+					<c:if test="${pcContractLists.ptrdate != sysdateTemp}">
 						<tr>
 							<td class="pcContractno">${pcContractLists.ptconno }</td>
 							<td class="pcContractDetail">${pcContractLists.ptid }</td>
 							<td class="pcContractDetail">${pcContractLists.ptname }</td>
 							<td>${pcContractLists.pttel}</td>
 							<td>${pcContractLists.evno}</td>
-							<td>${pcContractLists.ptrdate}</td>
 							<td>${pcContractLists.ptstatus}</td>
 						</tr>
 					</c:if>

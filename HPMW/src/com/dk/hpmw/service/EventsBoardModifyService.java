@@ -17,13 +17,12 @@ public class EventsBoardModifyService implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		ManagerDTO manager = (ManagerDTO)session.getAttribute("manager");
-		request.setAttribute("pageNum", request.getParameter("pageNum")); 
 		
 		if(manager!=null) {
 			int mno = manager.getMno();
 			String evno = request.getParameter("evno");
 			String evtitle = request.getParameter("evtitle");
-			String evdetail = request.getParameter("evdetail");;
+			String evdetail = request.getParameter("evdetail");
 			String tempevstartdate = request.getParameter("evstartdate");
 			Date evstartdate = Date.valueOf(tempevstartdate); 
 			String tempetno = request.getParameter("etno");
@@ -34,11 +33,10 @@ public class EventsBoardModifyService implements Service {
 			
 			if(result == NoticeBoardDAO.NoticeBoardModifySUCCESS) { 
 				request.setAttribute("evtitle", evtitle);
-				request.setAttribute("EventsModifyResult", evtitle+" 행사 수정 성공");
-				System.out.println(evtitle+" 행사 수정 성공");
+				request.setAttribute("EventsModifyResult", "행사가 수정되었습니다.");
 			}else {
 				request.setAttribute("evtitle", evtitle);
-				request.setAttribute("EventsModifyResult", evtitle+" 행사 수정 실패");
+				request.setAttribute("EventsModifyResult", "행사 수정 실패하였습니다.");
 			}
 		}
 	}

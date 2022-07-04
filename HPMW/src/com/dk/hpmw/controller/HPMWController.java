@@ -31,8 +31,12 @@ import com.dk.hpmw.service.NoticeBoardListService;
 import com.dk.hpmw.service.NoticeBoardModifyService;
 import com.dk.hpmw.service.NoticeBoardModifyViewService;
 import com.dk.hpmw.service.NoticeBoardWriteService;
+import com.dk.hpmw.service.ParttimerContractModifyService;
+import com.dk.hpmw.service.PastPtEmpConListService;
 import com.dk.hpmw.service.PtEmpConListService;
-import com.dk.hpmw.service.PtWriteEmpConDetaileService;
+import com.dk.hpmw.service.PtEmpConSubmitService;
+import com.dk.hpmw.service.PtInsertEventsService;
+import com.dk.hpmw.service.PtModifyEmpConViewService;
 import com.dk.hpmw.service.Service;
 
 @WebServlet("*.do")
@@ -62,9 +66,7 @@ public class HPMWController extends HttpServlet {
 		String viewPage = null;
 		Service service = null;
 
-		if (com.equals("/parttimerLoginView.do")) { // 파트타이머 로그인 페이지 이동
-			// viewPage = "main/loginParttimer.jsp";
-		} else if (com.equals("/managerLoginView.do")) { // 관리자 로그인 페이지 이동
+		if (com.equals("/managerLoginView.do")) { // 관리자 로그인 페이지 이동
 			viewPage = "main/managerLoginView.jsp";
 		} else if (com.equals("/managerLogin.do")) { // 관리자 로그인
 			service = new ManagerLoginService();
@@ -74,7 +76,7 @@ public class HPMWController extends HttpServlet {
 			service = new AllBoardListService();
 			service.execute(request, response);
 			viewPage = "main/main.jsp";
-			///// 부서 관리자  부분 //////
+			///// 부서 관리자 부분 //////
 			///// 근로계약서 양식//////
 		} else if (com.equals("/empContractView.do")) { // 근로계약서 양식 리스트 페이지 이동
 			service = new EmpContractViewService();
@@ -109,7 +111,7 @@ public class HPMWController extends HttpServlet {
 			if (request.getAttribute("LoginPage") == "managerLoginPage") {
 				viewPage = "main/managerLoginView.jsp";
 			} else {
-				viewPage = "main/parttimerLoginView.jsp";
+				viewPage = "partTimer/ptLoginView.jsp";
 			}
 			//////// 공지사항 게시판 관련 ////////
 		} else if (com.equals("/noticeBoardList.do")) { // 공지사항 게시판 리스트
@@ -138,7 +140,7 @@ public class HPMWController extends HttpServlet {
 			service = new NoticeBoardModifyService();
 			service.execute(request, response);
 			viewPage = "noticeBoardList.do";
-			//////// 행사 게시판  관련 ////////
+			//////// 행사 게시판 관련 ////////
 		} else if (com.equals("/eventsBoardList.do")) { // 행사 게시판 리스트
 			service = new EventsBoardListService();
 			service.execute(request, response);
@@ -155,30 +157,44 @@ public class HPMWController extends HttpServlet {
 			service = new EventsBoardModifyViewService();
 			service.execute(request, response);
 			viewPage = "eventsBoard/eventsBoardModifyView.jsp";
-		} else if (com.equals("/eventsBoardModify.do")) { // 행사 수정  ///////////미완성
-			service = new EventsBoardModifyService();	/// 리스트에서 메시지 안뿌려짐
+		} else if (com.equals("/eventsBoardModify.do")) { // 행사 수정
+			service = new EventsBoardModifyService();
 			service.execute(request, response);
 			viewPage = "eventsBoardList.do";
 		} else if (com.equals("/eventsBoardWriteView.do")) { // 행사 입력 뷰
- 			service = new EventsBoardWriteViewService();
- 			service.execute(request, response);
+			service = new EventsBoardWriteViewService();
+			service.execute(request, response);
 			viewPage = "eventsBoard/eventsBoardWriteView.jsp";
-		} else if (com.equals("/eventsBoardWrite.do")) { // 행사 입력 
-			service = new EventsBoardWriteService(); /////////페이지 번호 에러 
+		} else if (com.equals("/eventsBoardWrite.do")) { // 행사 입력
+			service = new EventsBoardWriteService(); ///////// 페이지 번호 에러
 			service.execute(request, response);
 			viewPage = "eventsBoardList.do";
 			/////// 파트타이머 관리 관련 ///////
-		} else if (com.equals("/ptEmpConList.do")) { // 파트타이머 근로계약서 리스트 
-			service = new PtEmpConListService();  
+		} else if (com.equals("/ptEmpConList.do")) { // 파트타이머 당일 근로계약서 리스트
+			service = new PtEmpConListService();
 			service.execute(request, response);
 			viewPage = "parttimerContract/ptEmpConList.jsp";
-		} else if (com.equals("/ptWriteEmpConDetaile.do")) { // 파트타이머 근로계약서 상세보기 
-			service = new PtWriteEmpConDetaileService();  
+		} else if (com.equals("/pastptEmpConList.do")) { // 파트타이머 지난 근로계약서 리스트
+			service = new PastPtEmpConListService();
 			service.execute(request, response);
-			viewPage = "parttimerContract/ptWriteEmpConDetaile.jsp";
+			viewPage = "parttimerContract/pastptEmpConList.jsp";
+		} else if (com.equals("/ptModifyEmpConView.do")) { // 파트타이머 근로계약서 상세보기
+			service = new PtModifyEmpConViewService();
+			service.execute(request, response);
+			viewPage = "parttimerContract/ptModifyEmpConView.jsp";
+		} else if (com.equals("/PtInsertEvents.do")) { // 파트타이머 행사 입력
+			service = new PtInsertEventsService();
+			service.execute(request, response);
+			viewPage = "ptEmpConList.do";
+		} else if (com.equals("/ptEmpConSubmit.do")) { // 파트타이머 마감처리
+			service = new PtEmpConSubmitService();
+			service.execute(request, response);
+			viewPage = "ptEmpConList.do";
+		} else if (com.equals("/parttimerContractModify.do")) { // 근로계약서 수정 위한 마감 수정
+			service = new ParttimerContractModifyService();
+			service.execute(request, response);
+			viewPage = "ptModifyEmpConView.do";
 		}
-		
-		
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

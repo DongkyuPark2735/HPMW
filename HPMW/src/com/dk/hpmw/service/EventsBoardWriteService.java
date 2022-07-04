@@ -17,9 +17,6 @@ public class EventsBoardWriteService implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		ManagerDTO manager = (ManagerDTO)session.getAttribute("manager");
-		request.setAttribute("pageNum", request.getParameter("pageNum")); 
-		
-		System.out.println("페이지 번호" +request.getParameter("pageNum"));
 		if(manager!=null) {
 			EventsDTO evdto = new EventsDTO();
 			int mno = manager.getMno();

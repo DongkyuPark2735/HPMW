@@ -139,6 +139,8 @@ UPDATE SUGGESTIONBOARD SET SBTITLE = '수정된 답글1',
                         WHERE SBNO = 5 AND SBPW = 1;
 
 select * from events;
+
+
 -- 파트타이머 근로계약서 관련 : ParttimerContractDAO PARTTIMERCONTRACT
 -- 파트타이머 근로계약서 목록 보기 : ArrayList<ParttimerContractDTO> listParttimerContract(int startRow, int endRow)
 -- o파트타이머 목록 보기 :  ArrayList<ParttimerContractDTO> listParttimerContract(int startRow, int endRow)
@@ -148,16 +150,39 @@ SELECT *
                             FROM PARTTIMER P ,PARTTIMERCONTRACT PC  
                                 WHERE P.PTID = PC.PTID  ORDER BY PTCONNO DESC) A)
                             WHERE RN BETWEEN 1 AND 10;
+                           
+-- 파트타이머 근로계약서 일일 보기 : ArrayList<ParttimerContractDTO> dailyListParttimerContract(int startRow, int endRow)
+SELECT * 
+    FROM (SELECT ROWNUM RN, A.*
+                 FROM (SELECT PC.*, P.PTEMPCONCHEK  
+                            FROM PARTTIMER P ,PARTTIMERCONTRACT PC  
+                                WHERE P.PTID = PC.PTID ORDER BY PTCONNO DESC) A)
+                            WHERE RN BETWEEN 1 AND 10 AND PTRDATE = TO_DATE(SYSDATE, 'YY/MM/DD');
+ 
 -- o파트타이머 & 파트타이머 근로계약서 상세보기 : ParttimerContractDTO detailParttimerContract(String ptconno)
 SELECT PC.*, P.PTEMPCONCHEK  
     FROM PARTTIMER P ,PARTTIMERCONTRACT PC  
     WHERE P.PTID = PC.PTID AND PTCONNO = '00000019';
-    
+
+-- ptid&ptpw로 오늘 날짜 파트타이머 근로계약서 상세보기 : ParttimerContractDTO detailParttimerContract(String ptid, String ptname)
+SELECT PC.*, P.PTEMPCONCHEK  
+    FROM PARTTIMER P ,PARTTIMERCONTRACT PC  
+    WHERE P.PTID = PC.PTID AND PC.PTID = '8888' AND PC.PTNAME = '이슬기' AND PC.PTRDATE = TO_DATE(SYSDATE, 'YY/MM/DD');
+
+SELECT * FROM PARTTIMERCONTRACT; 
+
+SELECT PC.*, P.PTEMPCONCHEK FROM PARTTIMER P ,PARTTIMERCONTRACT PC  
+				WHERE P.PTID = PC.PTID AND PC.PTID = '2804' AND PC.PTNAME = '전하윤' 
+                    AND PC.PTRDATE = TO_DATE(SYSDATE, 'YY/MM/DD');
+
+COMMIT;
+
 -- 파트타이머 근로계약서 총 갯수 : int 	parttimerContractTotcnt
 SELECT COUNT(*) FROM PARTTIMERCONTRACT;
 
 -- o파트타이머 근로계약서 삭제 : int deleteParttimerContract(String ptconno)
 DELETE FROM PARTTIMERCONTRACT WHERE PTCONNO = '00000016';
+
 
 -- o파트타이머 근로계약서 행사정보 입력 : int insertEventsParttimer(String evno, String ptconno)
 UPDATE PARTTIMERCONTRACT SET EVNO = '220627003' WHERE PTCONNO = '00000015';
@@ -172,11 +197,13 @@ UPDATE PARTTIMERCONTRACT SET PTTOTALPAY = (PTWORKTIME * PTHOURLYWAGE)
                         WHERE PTCONNO = '00000019';
 -- o파트타이머 근로계약서 마감 : int intsertParttimerPtstatus(String ptconno)
 UPDATE PARTTIMERCONTRACT SET PTSTATUS = 1
-                        WHERE PTCONNO = '00000019';
+                        WHERE PTCONNO = '00000051';
                         
 -- 파트타이머 근로계약서 마감 후 수정 : 
 insert into parttimer VALUES (2222, 2222, 0); 
 SELECT * FROM PARTTIMER;
+
+
 -- 파트타이머 관련 : ParttimerDAO
 -- o파트타이머 로그인 : ParttimerDTO loginParttimer(String ptid, String ptpw) 
 SELECT * FROM PARTTIMER WHERE PTID = 0586 AND PTPW = 0586;
@@ -184,12 +211,15 @@ SELECT * FROM PARTTIMER WHERE PTID = 0586 AND PTPW = 0586;
 SELECT P.PTID, PTNAME, PTPW, PTEMPCONCHEK FROM PARTTIMER P,PARTTIMERCONTRACT PC
     WHERE P.PTID = PC.PTID AND P.PTID = '2804' AND PTNAME = '송지승';
 
-
 -- o파트타이머 근로계약서 작성 : int insertParttimerContract(ParttimerContractDTO pcdto)
 SELECT * FROM PARTTIMERCONTRACT;
 INSERT INTO PARTTIMERCONTRACT(PTCONNO, PTID, PTNAME, PTTEL, PTEMAIL, PTADDRESS, BTNO, PTACCOUNTNO)
     VALUES(TRIM(TO_CHAR(PTCONT_SEQ.NEXTVAL, '00000009')), '5555', '한만운', '010-1111-5555', 'HONG@NAVER.COM', '서울시 강남구 압구정', 300, '55444466664848');
-  
+
+
+-- 파트타이머 근로계약서 작성후 PTEMPCONCHEK 수정 
+UPDATE PARTTIMER SET PTEMPCONCHEK = 1 WHERE PTID = '8888';
+
 -- 파트타이머 근로계약서 가져오기 :  ParttimerContractDTO detailParttimerContract(String ptconno)   
 SELECT PC.*, P.PTEMPCONCHEK  
     FROM PARTTIMER P ,PARTTIMERCONTRACT PC  
@@ -203,6 +233,8 @@ UPDATE PARTTIMERCONTRACT SET PTNAME = '정효원',
                              BTNO = 400,
                              PTACCOUNTNO = '44445555666677'
                         WHERE PTCONNO = '00000019';
+UPDATE PARTTIMERCONTRACT SET PTrdate = '22/07/05' where PTCONNO = '00000052';
+
 
 -- 파트타이머 공지사항 게시판 관련    
 -- 공지사항 글 목록 : ArrayList<NoticeBoardDTO> listNoticeBoard(int startRow, int endRow)
@@ -253,6 +285,9 @@ SELECT *
                                     WHERE E.ETNO = ET.ETNO ORDER BY EVSTARTDATE, EVNO) A)
                              WHERE RN BETWEEN 1 AND 10;
 SELECT * FROM EVENTS;
+
+-- 당일 행사 목록 가져오기 : 
+SELECT * FROM EVENTS WHERE EVSTARTDATE = TO_DATE(SYSDATE, 'YY/MM/DD');
 
 -- 행사 상세보기 DTO가져오기 : EventsDTO detailEvents(int evno)
 SELECT EVNO, EVTITLE, EVDETAIL, EVSTARTDATE, ET.ETNO, ET.ETNAME, MNO
