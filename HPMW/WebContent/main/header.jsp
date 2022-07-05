@@ -90,10 +90,11 @@
 			<c:if test="${not empty parttimer }">
 				<c:if test="${parttimer.ptempconchek eq 0 }">
 					<script>
-						alert("근로계약서를 먼저 작성해야 합니다. 근로계약서 페이지로 이동합니다.");
-						location.href='${conPath}/ptWriteEmpConView.ptdo';
+						$(document).ready(function() {
+							$("a").removeAttr("href");
+						});
 					</script>
-				</c:if>
+				</c:if>s
 				<div class="headerBarRight">
 					<ul>
 						<li>
@@ -104,7 +105,7 @@
 					</ul>
 					<ul>
 						<li><a href=#>${parttimer.ptid } 님 </a></li>
-						<li><a href="${conPath }/ptEmpConList.do">나의 행사 보기</a></li>
+						<li><a href="${conPath }/ptMyEventsView.ptdo">나의 행사 보기</a></li>
 						<li><a href="${conPath }/ptWriteEmpConView.ptdo">나의 근로계약서 보기</a></li>
 						<li><a href="${conPath }/logout.do">로그아웃</a></li>
 					</ul>

@@ -195,6 +195,8 @@ public class HPMWController extends HttpServlet {
 			service.execute(request, response);
 			viewPage = "ptModifyEmpConView.do";
 		}
+			////건의사항 게시판 관련 ////
+	
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

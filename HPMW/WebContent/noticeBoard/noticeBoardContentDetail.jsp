@@ -56,7 +56,7 @@
 							<input type="button" value="글삭제" 
 										 onclick="location.href='${conPath}/noticeBoardDelete.do?nbno=${noticBoardDetail.nbno }&pageNum=${pageNum }&mno=${manager.mno }'">
 						</c:if>
-							<input type="button" value="목록" class="btn"	 onclick="location.href='${conPath}/noticeBoardList.do?pageNum=${pageNum }'">
+							<input type="button" value="목록" class="btn"	 onclick='location.href="${conPath}/noticeBoardList.do?pageNum=${pageNum}"'>
 					</td>
 				</tr>	
 			</table>

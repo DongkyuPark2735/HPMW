@@ -29,7 +29,6 @@
 					$('select[name="btno"]').focus();
 					return false;
 				}
-				
 			});
 			
 			$('input[name="ptname"]').on("keyup", function(){  //이름 입력 제한
@@ -47,35 +46,53 @@
  				$(this).val($(this).val().replace(/[^a-zA-Z0-9()_-]/g,''));
 			});
 			$('input[name="ptaddress"]').keyup(function(){ // 주소 입력 제한 
- 				$(this).val($(this).val().replace(/[^가-힣a-zA-Z0-9()_-]/g,''));
+ 				$(this).val($(this).val().replace(/[^가-힣a-zA-Z0-9 ()_-]/g,''));
 			});
-			
 			$('input[name="modifyParttimerInfo"]').click(function () {
 
 			});
-			
 		});
 	</script>
 </head>
-<body>
-<!-- 근로계약서 작성 확인 메시지  --> <!-- 수정 해야함 오류 ///////////////////-->
-<c:if test="${not empty ParttimerContractInsetResult} ">
+<!-- 근로계약서 작성 확인 메시지  -->
+
+<c:if test="${not empty ParttimerContractInsetResult }">
 	<script>
-		alert('${ParttimerContractInsetResult}');
+		$(document).ready(function() {
+			console.log('${ParttimerContractInsetResult }');
+			alert('${ParttimerContractInsetResult }');
+		});
 	</script>
 </c:if>
+
 <!-- 파트타이머 근로계약서 작성후 나의 근로계약서 보기 readonly로 수정-->
-<c:if test="${parttimer.ptempconchek eq 0 }">
+<c:if test="${parttimer.ptempconchek eq 1 }">
 	<script>
-		$('input[type="text"]').attr('readonly', true);
+		$(document).ready(function() {
+			$('input[type="text"]').attr('readonly', true);
+			$('select[name="ptemailselect"]').attr('disabled', 'disabled');
+		});
 	</script>
 </c:if>
 <!-- 파트타이머 근로계약서 수정 메시지-->
-<c:if test="${parttimer.ptempconchek eq 0 }">
+<c:if test="${not empty deletePtempconchek}">
 	<script>
-		$('input[type="text"]').attr('readonly', true);
+		$(document).ready(function() {
+			alert('${deletePtempconchek}');
+		});
 	</script>
 </c:if>
+
+<!-- 파트타이머 근로계약서 수정 시 form 태그 값 변경 -->
+<c:if test="${not empty parttimerContractdetail}">
+	<script>
+		$(document).ready(function() {
+			$('.frm').attr('action', "${conPath }/modifyParttimerCon.ptdo");
+		});
+	</script>
+</c:if>
+<body>
+
 
 <!-- 헤더 -->
 <jsp:include page="../main/header.jsp"/>
@@ -92,7 +109,8 @@
 				<td colspan="2"><hr></td>
 			</tr>
 	</table>
-	<form action="${conPath }/ptWriteEmpCon.ptdo" method="post">
+
+	<form class="frm" action="${conPath }/ptWriteEmpCon.ptdo" method="post" >
 		<input type="hidden" name="ptconno" value="${parttimerContractdetail.ptconno }"> 
 		<table>
 			<tr>
@@ -114,9 +132,9 @@
 					<input type="text" name="ptemail" value="${parttimerContractdetail.ptemail }" maxlength="30">
 					<select name="ptemailselect">
 						<option hidden="hidden" selected="selected" disabled="disabled" value="nonEmail">메일을 선택하세요</option>
-						<option value="@daum.net">@daum.net</option>
-						<option value="@naver.com">@naver.com</option>
-						<option value="@google.com">@google.com</option>
+							<option value="@daum.net">@daum.net</option>
+							<option value="@naver.com">@naver.com</option>
+							<option value="@google.com">@google.com</option>
 					</select>
 					</td>
 			</tr>
@@ -159,13 +177,21 @@
 			</tr>
 		</table>
 		
-		<c:if test="${parttimer.ptempconchek eq 0}">
-			<input type="submit" value="근로계약서  정보 입력" >
-			<input type="reset" value="로그인 화면으로" onclick="location.href='${conPath}/ptLoginView.ptdo'">
+		<c:if test="${parttimer.ptempconchek eq 0}"> 
+			<c:if test="${empty parttimerContractdetail}">  <!-- 첫 작성 일때 입력 버튼 -->
+				<input type="submit" value="근로계약서  정보 입력" >
+				<input type="reset" value="로그인 화면으로" onclick="location.href='${conPath}/ptLoginView.ptdo'">
+			</c:if>
+			<c:if test="${not empty parttimerContractdetail}">	<!-- 수정하기 일때 입력 버튼  -->
+				<input type="submit" value="근로 계약서 정보 수정 ">
+			</c:if>
 		</c:if>
-		<c:if test="${parttimer.ptempconchek eq 1}">
-			<input type="button" value="수정하기" name="modifyParttimerInfo" onclick="location.href='${conPath}/modifyParttimerInfo.ptdo'" >
-			<input type="reset" value="돌아가기" onclick="history.back();">
+		
+		<c:if test="${parttimer.ptempconchek eq 1}">	
+			<c:if test="${parttimerContractdetail.ptstatus eq 0}"> <!-- 수정하기  -->
+				<input type="button" value="수정하기" name="modifyParttimerInfo" onclick="location.href='${conPath}/modifyParttimerInfo.ptdo'" >
+			</c:if>
+			<input type="reset" value="돌아가기" onclick="location.href='${conPath}/main.do'">
 		</c:if>
 	</form>
 	<!-- 마감 처리 전 -->

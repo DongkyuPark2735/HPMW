@@ -2,6 +2,7 @@ package com.dk.hpmw.servicePT;
 
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,12 +22,12 @@ public class PtWriteEmpConViewService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+
 		EmployContractDAO ecdao = EmployContractDAO.getInstance();
 		EmployContractDTO ecdto = null;
 		ecdto = ecdao.detailEmployContract(); 
 		request.setAttribute("EmployContractForm", ecdto); // 당일 근로계약서만 가져오기 
 		
-		System.out.println(request.getAttribute("ParttimerContractInsetResult"));
 		HttpSession session = request.getSession();
 		
 		ParttimerDTO ptdto = (ParttimerDTO)session.getAttribute("parttimer");
@@ -46,13 +47,15 @@ public class PtWriteEmpConViewService implements Service {
 		if(session.getAttribute("ptconno") != null) {
 			String ptconno = (String)session.getAttribute("ptconno");
 			request.setAttribute("parttimerContractdetail", pcdao.detailParttimerContract(ptconno));
+		
 		}else {
 			ArrayList<ParttimerContractDTO> pcdtoarr = pcdao.detailIDParttimerContract(ptdto.getPtid());
 			ParttimerContractDTO pcdto = null;
 			if(!pcdtoarr.isEmpty()) {
 				pcdto = pcdtoarr.get(0);
-				System.out.println(pcdto);
 				request.setAttribute("parttimerContractdetail", pcdto);
+				
+				
 			}
 		}
 	}

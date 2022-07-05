@@ -9,10 +9,12 @@ import com.dk.hpmw.noticeboard.NoticeBoardDAO;
 import com.dk.hpmw.noticeboard.NoticeBoardDTO;
 
 public class NoticeBoardListService implements Service {
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(request.getParameter("pageNum"));
 		String pageNum = request.getParameter("pageNum");
-		if(pageNum==null) {
+		if(pageNum==null || pageNum=="") {
 			if(request.getAttribute("pageNum")==null) {
 				pageNum = "1";
 			}else {

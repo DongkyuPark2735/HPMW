@@ -14,7 +14,6 @@
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 <script>/* 글 상세보기 리스트 클릭시  */
 	$(document).ready(function() {
 		$('.noticeBoarddetail').click(function(){

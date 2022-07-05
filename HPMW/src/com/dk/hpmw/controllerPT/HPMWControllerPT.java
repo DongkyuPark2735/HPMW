@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dk.hpmw.service.Service;
+import com.dk.hpmw.servicePT.ModifyParttimerConService;
 import com.dk.hpmw.servicePT.ModifyParttimerInfoService;
 import com.dk.hpmw.servicePT.PtLoginService;
+import com.dk.hpmw.servicePT.PtMyEventsViewService;
 import com.dk.hpmw.servicePT.PtWriteEmpConService;
 import com.dk.hpmw.servicePT.PtWriteEmpConViewService;
 
@@ -55,14 +57,24 @@ public class HPMWControllerPT extends HttpServlet {
 			service = new PtWriteEmpConService();
 			service.execute(request, response);
 			viewPage = "ptWriteEmpConView.ptdo";
-		} else if (com.equals("/modifyParttimerInfo.ptdo")) { //파트타이미 근로계약서 입력
-			service = new ModifyParttimerInfoService();
+		} else if (com.equals("/modifyParttimerInfo.ptdo")) { //파트타이미 근로계약서 수정을 위한 값 삭제 
+			service = new ModifyParttimerInfoService(); // 수정하러 갈떄
 			service.execute(request, response);
 			viewPage = "ptWriteEmpConView.ptdo";
+		} else if (com.equals("/modifyParttimerCon.ptdo")) { //파트타이미 근로계약서 수정
+			service = new ModifyParttimerConService(); //수정하고 난 후
+			service.execute(request, response);
+			viewPage = "ptWriteEmpConView.ptdo";
+		} else if (com.equals("/ptMyEventsView.ptdo")) { //파트타이미 나의 행사 보기
+			service = new PtMyEventsViewService();
+			service.execute(request, response);
+			viewPage = "eventsBoard/eventsBoardContent.jsp";
 		}
 		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}
+	
+	
 }

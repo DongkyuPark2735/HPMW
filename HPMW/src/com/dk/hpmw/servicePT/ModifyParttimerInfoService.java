@@ -1,5 +1,6 @@
 package com.dk.hpmw.servicePT;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,10 @@ public class ModifyParttimerInfoService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
+		ServletContext application = request.getServletContext();
+		String pcconno = (String)request.getAttribute("pcconno");
+		
+		application.setAttribute("blockParttimerContractInsert", "b"+pcconno);
 		
 		ParttimerDTO parttimer = (ParttimerDTO)session.getAttribute("parttimer");
 		ParttimerDAO ptdao = ParttimerDAO.getInstance();

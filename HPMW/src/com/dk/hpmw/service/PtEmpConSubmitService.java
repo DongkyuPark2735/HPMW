@@ -14,7 +14,7 @@ public class PtEmpConSubmitService implements Service {
 		String ptconno = request.getParameter("ptconno");
 		String tmppthourlywage = request.getParameter("pthourlywage").replace(",", "");
 		int pthourlywage = Integer.parseInt(tmppthourlywage);
-		int pttotalpay = Integer.parseInt(request.getParameter("pttotalpay"));
+		int pttotalpay = Integer.parseInt(request.getParameter("pttotalpay").replace(",", ""));
 		int ptworktime = Integer.parseInt(request.getParameter("ptworktime"));
 		
 		ParttimerContractDAO pcdao = ParttimerContractDAO.getInstance();

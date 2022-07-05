@@ -35,7 +35,7 @@ public class PtModifyEmpConViewService implements Service {
 		ParttimerContractDTO ptcdto = ptcdao.detailParttimerContract(ptconno);
 		ArrayList<EventsTypeDTO> etarr = etdao.listEventsType();
 		
-		ParttimerDTO ptdto = ptdao.searchPtidPtpw(ptcdto.getPtid(), ptcdto.getPtname());
+//		ParttimerDTO ptdto = ptdao.searchPtidPtpw(ptcdto.getPtid(), ptcdto.getPtname());
 		
 		EmployContractDTO empdto = empcdao.detailEmployContract();
 		ArrayList<EventsDTO> evlist = evdao.listDailyEvents();
@@ -53,7 +53,7 @@ public class PtModifyEmpConViewService implements Service {
 		request.setAttribute("sysdate", sysdate);
 		request.setAttribute("evnetsDail", evlist);
 		request.setAttribute("employContract", empdto);
-		request.setAttribute("parttimer", ptdto);
+//		request.setAttribute("parttimer", ptdto);
 		request.setAttribute("eventsType", etarr);
 		request.setAttribute("parttimerContract", ptcdto);
 	}

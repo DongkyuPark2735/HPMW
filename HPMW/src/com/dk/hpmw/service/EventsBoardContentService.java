@@ -7,6 +7,7 @@ import com.dk.hpmw.events.EventsDAO;
 import com.dk.hpmw.events.EventsDTO;
 import com.dk.hpmw.noticeboard.NoticeBoardDAO;
 import com.dk.hpmw.noticeboard.NoticeBoardDTO;
+import com.dk.hpmw.parttimer.ParttimerDTO;
 
 public class EventsBoardContentService implements Service {
 
@@ -19,8 +20,6 @@ public class EventsBoardContentService implements Service {
 		
 		request.setAttribute("EventsDetail", evdto);
 		request.setAttribute("pageNum", request.getParameter("pageNum"));
-		
-		
 		
 	}
 }

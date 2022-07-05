@@ -34,6 +34,24 @@
  <jsp:include page="../main/header.jsp"/>
  		<!-- 관리자 메인화면 -->
 	<c:if test="${not empty manager}">
+		<script>
+			$(document).ready(function() {
+				$('.noticeBoarddetail').click(function(){
+					var nbno = Number($(this).siblings('.noticeBoardNbno').text());
+					if(!isNaN(nbno)){
+						location.href = '${conPath}/noticeBoardContentDetail.do?nbno='+nbno+'&pageNum=${pageNum}';
+					}
+				});
+				
+				$('.eventsEvdetail').click(function(){
+					var evno = Number($(this).siblings('.eventsEvno').text());
+					if(!isNaN(evno)){
+						location.href = '${conPath}/eventsBoardContent.do?evno='+evno+'&pageNum=${pageNum}';
+					}
+				});
+			});
+		</script>
+	
 	 	<!-- 메인 화면 게시글 출력  -->
 		<!-- 공지사항 게시글 출력 10개만  -->
 		<p>관리자 메인페이지</p>
@@ -57,9 +75,9 @@
 			<c:if test="${not empty noticeBoardList}">
 				<c:forEach items="${noticeBoardList }" var="noticeBoardLists" >
 					<tr>
-						<td>${noticeBoardLists.nbno }</td>
+						<td class="noticeBoardNbno">${noticeBoardLists.nbno }</td>
 						<td>${noticeBoardLists.mno }</td>
-						<td>${noticeBoardLists.nbtitle }</td>
+						<td class="noticeBoarddetail">${noticeBoardLists.nbtitle }</td>
 						<td>${noticeBoardLists.nbcontent}</td>
 						<td>${noticeBoardLists.nbhit }</td>
 						<td><fmt:formatDate value="${noticeBoardLists.nbrdate}" pattern="yy-MM-dd(E) HH:mm"/></td>
@@ -94,9 +112,9 @@
 			<c:if test="${not empty eventsList}">
 				<c:forEach items="${eventsList }" var="eventsLists">
 					<tr>
-						<td>${eventsLists.evno }</td>
-						<td>${eventsLists.evtitle }</td>
-						<td>${eventsLists.evdetail }</td>
+						<td class="eventsEvno">${eventsLists.evno }</td>
+						<td class="eventsEvdetail">${eventsLists.evtitle }</td>
+						<td class="eventsEvdetail">${eventsLists.evdetail }</td>
 						<td><fmt:formatDate value="${eventsLists.evstartdate}" pattern="yy-MM-dd(E)"/></td>
 						<td>${eventsLists.etno}</td>
 						<td>${eventsLists.mno }</td>
@@ -153,8 +171,33 @@
 	</c:if>
 	
 	
-	<!-- 파트타이머  메인화면 -->
+	<!-- 파트타이머  근로계약서 작성 유무 -->
 	<c:if test="${not empty parttimer}">
+		<c:if test="${parttimer.ptempconchek eq 0 }">
+			<script>
+				alert("근로계약서를 먼저 작성해야 합니다. 근로계약서 페이지로 이동합니다.");
+				location.href='${conPath}/ptWriteEmpConView.ptdo';
+			</script>
+		</c:if>
+		
+		<script>
+			$(document).ready(function() {
+				$('.noticeBoarddetail').click(function(){
+					var nbno = Number($(this).siblings('.noticeBoardNbno').text());
+					if(!isNaN(nbno)){
+						location.href = '${conPath}/noticeBoardContentDetail.do?nbno='+nbno+'&pageNum=${pageNum}';
+					}
+				});
+				
+				$('.eventsEvdetail').click(function(){
+					var evno = Number($(this).siblings('.eventsEvno').text());
+					if(!isNaN(evno)){
+						location.href = '${conPath}/eventsBoardContent.do?evno='+evno+'&pageNum=${pageNum}';
+					}
+				});
+			});
+		</script>
+	<!-- 파트타이머  메인화면 -->
 		<p>관리자 메인페이지</p>
 		<p>공지사항 게시글</p>
 		<table>
@@ -176,10 +219,10 @@
 			<c:if test="${not empty noticeBoardList}">
 				<c:forEach items="${noticeBoardList }" var="noticeBoardLists" >
 					<tr>
-						<td>${noticeBoardLists.nbno }</td>
+						<td class="noticeBoardNbno">${noticeBoardLists.nbno }</td>
 						<td>${noticeBoardLists.mno }</td>
 						<td>${noticeBoardLists.nbtitle }</td>
-						<td>${noticeBoardLists.nbcontent}</td>
+						<td class="noticeBoarddetail">${noticeBoardLists.nbcontent}</td>
 						<td>${noticeBoardLists.nbhit }</td>
 						<td><fmt:formatDate value="${noticeBoardLists.nbrdate}" pattern="yy-MM-dd(E) HH:mm"/></td>
 					</tr>
@@ -213,9 +256,9 @@
 			<c:if test="${not empty eventsList}">
 				<c:forEach items="${eventsList }" var="eventsLists">
 					<tr>
-						<td>${eventsLists.evno }</td>
-						<td>${eventsLists.evtitle }</td>
-						<td>${eventsLists.evdetail }</td>
+						<td class="eventsEvno">${eventsLists.evno }</td>
+						<td class="eventsEvdetail">${eventsLists.evtitle }</td>
+						<td class="eventsEvdetail">${eventsLists.evdetail }</td>
 						<td><fmt:formatDate value="${eventsLists.evstartdate}" pattern="yy-MM-dd(E)"/></td>
 						<td>${eventsLists.etno}</td>
 						<td>${eventsLists.mno }</td>

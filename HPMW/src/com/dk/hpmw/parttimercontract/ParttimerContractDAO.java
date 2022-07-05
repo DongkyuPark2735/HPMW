@@ -223,6 +223,7 @@ public class ParttimerContractDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pcdto.getPtname());
 			pstmt.setString(2, pcdto.getPttel());
+			System.out.println(pcdto.getPtemail());
 			pstmt.setString(3, pcdto.getPtemail());
 			pstmt.setString(4, pcdto.getPtaddress());
 			pstmt.setInt(5, pcdto.getBtno());
@@ -436,7 +437,7 @@ public class ParttimerContractDAO {
 		ResultSet rs = null;
 		String sql = "SELECT PC.*, P.PTEMPCONCHEK FROM PARTTIMER P ,PARTTIMERCONTRACT PC " + 
 									" WHERE P.PTID = PC.PTID AND PC.PTID = ? " + 
-									" AND PC.PTRDATE = TO_DATE(SYSDATE, 'YY/MM/DD')";
+									" AND PC.PTRDATE = TO_DATE(SYSDATE, 'YY/MM/DD') ORDER BY PTCONNO DESC";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);

@@ -22,10 +22,16 @@
 	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script>
-	</script>
+<script>
+	$(document).ready(function() {
+		$('input[name="ptid"]').keyup(function(){
+			$(this).val($(this).val().replace(/[^0-9]/g,''));
+		});
+	});
+</script>
 </head>
 <body>
+
 <c:if test="${not empty logoutMSG }">
 	<script>
 		alert("${logoutMSG }");
@@ -37,7 +43,7 @@
 			<caption><b>관리자 로그인 페이지</b></caption>
 				<tr>
 					<td>
-						<input type="text" name="mno" placeholder="아이디를 입력하세요 " required="required" >
+						<input type="text" name="mno" placeholder="아이디를 입력하세요 " required="required" maxlength="7" >
 					</td>
 				</tr>
 				<tr>

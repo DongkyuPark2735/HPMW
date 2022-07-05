@@ -32,7 +32,9 @@
 	  		console.log(pthourlywage);
 	  		
 	  		$('input[name="pttotalpay"]').val(worktime * pthourlywage);
+	  		$('input[name="pttotalpay"]').val($('input[name="pttotalpay"]').val().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	  		$('input[name="ptworktime"]').val(worktime);
+	  		
 			});
 			//행사 입력 
 			$('input[name="insertEvents"]').click(function(){
@@ -68,6 +70,7 @@
 					return false;
 				}
 			});
+			
 	  });
 	</script>
 </head>
@@ -79,6 +82,16 @@
 			alert('${pcModifyResult }');
 		</script>
 	</c:if>
+	<!-- 파트타이머 수정시 수정 불가  -->
+	<c:if test="${not empty applicationScope.blockParttimerContractInsert}">
+		<c:if test="${applicationScope.blockParttimerContractInsert eq 'b'+parttimerContract.ptconno }">
+			<script>
+				alert('해당 파트타이머 근로계약서가 수정중 입니다. 잠시후 다시 시도해주세요');
+				history.back();
+			</script>
+		</c:if>
+	</c:if>
+	
 	<table>
 		<caption>${parttimerContract.ptconno }(${parttimerContract.ptname })님 근로계약서 상세보기</caption>
 			<tr>

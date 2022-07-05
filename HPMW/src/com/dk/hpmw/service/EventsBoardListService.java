@@ -14,8 +14,9 @@ public class EventsBoardListService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(request.getParameter("pageNum"));
 		String pageNum = request.getParameter("pageNum");
-		if(pageNum==null) {
+		if(pageNum==null || pageNum=="") {
 			if(request.getAttribute("pageNum")==null) { 
 				pageNum = "1";
 			}else {
@@ -37,7 +38,6 @@ public class EventsBoardListService implements Service {
 		if(endPage>pageCnt) {
 			endPage = pageCnt;
 		}
-		
 		request.setAttribute("BLOCKSIZE", BLOCKSIZE);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
