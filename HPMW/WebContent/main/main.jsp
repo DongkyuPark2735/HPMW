@@ -8,11 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	*{
-		text-align: center;
-	}
-</style>
+<link href="${conPath }/css/mainPage.css" rel="stylesheet"> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -54,45 +50,48 @@
 	
 	 	<!-- 메인 화면 게시글 출력  -->
 		<!-- 공지사항 게시글 출력 10개만  -->
-		<p>관리자 메인페이지</p>
-		<p>공지사항 게시글</p>
-		<table>
-			<tr>
-				<th>글 번호</th>
-				<th>작성자</th>
-				<th>글 제목</th>
-				<th>내 용</th>
-				<th>조회수</th>
-				<th>작성일시</th>
-			</tr>
-			<c:if test="${empty noticeBoardList}">
+  <div class="bdr">
+  	<div class="bdtitle">
+			<h2>공지사항 게시글</h2>
+  	</div>
+			<table>
 				<tr>
-					<td>
-						<p>공지사항 게시글이 없습니다.</p>
-					</td>
+					<th>글 번호</th>
+					<th>작성자</th>
+					<th>글 제목</th>
+					<th>내 용</th>
+					<th>조회수</th>
+					<th>작성일시</th>
 				</tr>
-			</c:if>
-			<c:if test="${not empty noticeBoardList}">
-				<c:forEach items="${noticeBoardList }" var="noticeBoardLists" >
+				<c:if test="${empty noticeBoardList}">
 					<tr>
-						<td class="noticeBoardNbno">${noticeBoardLists.nbno }</td>
-						<td>${noticeBoardLists.mno }</td>
-						<td class="noticeBoarddetail">${noticeBoardLists.nbtitle }</td>
-						<td>${noticeBoardLists.nbcontent}</td>
-						<td>${noticeBoardLists.nbhit }</td>
-						<td><fmt:formatDate value="${noticeBoardLists.nbrdate}" pattern="yy-MM-dd(E) HH:mm"/></td>
-					</tr>
-				</c:forEach>		
-					<tr>
-						<td colspan="6">
-							<a href="${conPath }/noticeBoardList.do">공지사항 글 더보기 </a>
+						<td>
+							<p>공지사항 게시글이 없습니다.</p>
 						</td>
 					</tr>
-			</c:if>
-		</table>
-		
+				</c:if>
+				<c:if test="${not empty noticeBoardList}">
+					<c:forEach items="${noticeBoardList }" var="noticeBoardLists" >
+						<tr>
+							<td class="noticeBoardNbno">${noticeBoardLists.nbno }</td>
+							<td>${noticeBoardLists.mno }</td>
+							<td class="noticeBoarddetail">${noticeBoardLists.nbtitle }</td>
+							<td>${noticeBoardLists.nbcontent}</td>
+							<td>${noticeBoardLists.nbhit }</td>
+							<td><fmt:formatDate value="${noticeBoardLists.nbrdate}" pattern="yy-MM-dd(E) HH:mm"/></td>
+						</tr>
+					</c:forEach>		
+						<tr>
+							<td colspan="6">
+								<a href="${conPath }/noticeBoardList.do">공지사항 글 더보기 </a>
+							</td>
+						</tr>
+				</c:if>
+			</table>
 	  <!-- 행사 출력 10개만  -->
-		<p>행사</p>
+	  <div class="bdtitle">
+			<h2>행 사</h2>
+  	</div>
 		<table>
 			<tr>
 				<th>행사 번호</th>
@@ -129,7 +128,9 @@
 		</table>
 		
 	  <!-- 건의사항게시판 출력 10개만  -->
-		<p>건의사항게시판</p>
+		<div class="bdtitle">
+			<h2>건의사항게시판</h2>
+  	</div>
 		<table>
 			<tr>
 				<th>글 번호</th>
@@ -168,6 +169,7 @@
 				</c:forEach>		
 			</c:if>
 		</table>
+	 </div>
 	</c:if>
 	
 	
@@ -198,8 +200,10 @@
 			});
 		</script>
 	<!-- 파트타이머  메인화면 -->
-		<p>관리자 메인페이지</p>
-		<p>공지사항 게시글</p>
+  <div class="bdr">
+  	<div class="bdtitle">
+			<h2>공지사항 게시글</h2>
+  	</div>
 		<table>
 			<tr>
 				<th>글 번호</th>
@@ -236,7 +240,9 @@
 		</table>
 		
 	  <!-- 행사 출력 10개만  -->
-		<p>행사</p>
+		<div class="bdtitle">
+			<h2>행사</h2>
+  	</div>
 		<table>
 			<tr>
 				<th>행사 번호</th>
@@ -273,7 +279,9 @@
 		</table>
 		
 	  <!-- 건의사항게시판 출력 10개만  -->
-		<p>건의사항게시판</p>
+		<div class="bdtitle">
+			<h2>건의사항게시판</h2>
+  	</div>
 		<table>
 			<tr>
 				<th>글 번호</th>
@@ -312,6 +320,7 @@
 				</c:forEach>		
 			</c:if>
 		</table>
+	 </div>
 	</c:if>
 </body>
 </html>

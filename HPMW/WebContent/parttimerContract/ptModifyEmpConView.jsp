@@ -8,10 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style></style>
+<link href="${conPath }/css/ptEmpConModifyPage.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
+			
 			/* 시급입력시 단위 표시 및 문자 입력 제한  */
 			$('input[name="pthourlywage"]').on("keyup", function(){    
  				$(this).val($(this).val().replace(/[^0-9]/g,''));
@@ -22,12 +23,17 @@
 	  	$('input[name="calculatePay"]').click(function (){
 	  		var starttime = $('input[name="startTime"]').val().substring(0,2);
 	  		var endtime = $('input[name="endTime"]').val().substring(0,2);
-	  		var minutecal = Math.round(($('input[name="startTime"]').val().substring(3,5) - $('input[name="endTime"]').val().substring(3,5)));
-	  		var worktime = (endtime - starttime);
+	  		var startmin = $('input[name="startTime"]').val().substring(3,5);
+	  		var endmin  = $('input[name="endTime"]').val().substring(3,5);
 	  		
-	  		console.log(minutecal);
-	  		console.log(starttime);
-	  		console.log(endtime);
+	  		var starttimetot = ((Number(starttime)*60) + Number(startmin));
+	  		console.log(starttimetot);
+	  		var endtimetot = ((Number(endtime)*60) + Number(endmin));
+	  		console.log(endtimetot);
+
+	  		var worktime = Math.round((endtimetot - starttimetot)/60);
+	  		console.log(worktime);
+
 	  		var pthourlywage = Number($('input[name="pthourlywage"]').val().replace(/,/g,''));
 	  		console.log(pthourlywage);
 	  		
@@ -91,50 +97,53 @@
 			</script>
 		</c:if>
 	</c:if>
-	
-	<table>
-		<caption>${parttimerContract.ptconno }(${parttimerContract.ptname })님 근로계약서 상세보기</caption>
+ <div class="bdr">
+	<div class="pcheader">
+		<h2>${parttimerContract.ptname }(${parttimerContract.ptconno })님 근로계약서 상세보기</h2>
+	</div>
+	<div class="pcinfoform">
+		<table>
 			<tr>
-				<td>파트타이머 근로계약서 번호</td>
+				<th>근로계약서 번호</th>
 				<td>${parttimerContract.ptconno }</td>
 			</tr>
 			<tr>
-				<td>파트타이머 이름(아이디)</td>
+				<th>이름(아이디)</th>
 				<td>${parttimerContract.ptname }(${parttimerContract.ptid })</td>
 			</tr>
 			<tr>
-				<td>연락처</td>
+				<th>연락처</th>
 				<td>${parttimerContract.pttel }</td>
 			</tr>
 			<tr>
-				<td>이메일</td>
+				<th>이메일</th>
 				<td>${parttimerContract.ptemail }</td>
 			</tr>
 			<tr>
-				<td>주소</td>
+				<th>주소</th>
 				<td>${parttimerContract.ptaddress }</td>
 			</tr>
 			<tr>
-				<td>계좌번호</td>
-				<td>${bankNo }(${bankName })</td>
+				<th>계좌번호</th>
+				<td>${parttimerContract.ptaccountno } (${bankName })</td>
 			</tr>
 			<tr>
 			<tr>
-				<td>근로계약서 작성 날짜</td>
+				<th>날짜</th>
 				<td>${parttimerContract.ptrdate }</td>
 			</tr>
-			<tr>
-				<td colspan="2"><hr></td>
-			</tr>
-	</table>
+		</table>
+	</div>
+	<hr>
 	<!-- 마감 처리 전 -->
 	<c:if test="${parttimerContract.ptstatus != 1}">
+		<div class="inputpcinfo">
 		<form action="${conPath }/ptEmpConSubmit.do" method="post" >
 			<input type="hidden" name="ptconno" value="${parttimerContract.ptconno }"> 
 			<input type="hidden" name="ptworktime" value=""> 
 			<table>
 				<tr>
-					<td>행사 입력 </td>
+					<th>행사 입력 </th>
 					<td>
 						<select name="evno">
 							<option hidden="hidden" selected="selected" disabled="disabled" value="nonEvents">행사를 입력하세요</option>
@@ -154,33 +163,39 @@
 					</td>
 				</tr>
 				<tr>
-					<td>근로 시간 입력</td>
+					<th>근로 시간 입력</th>
 					<td>
-						시작 : <input type="time" name="startTime" value="" min="05:00" >
-	 					종료 : <input type="time" name="endTime" value=""> 
+						<label for="sttime">시작 :</label>
+							<input type="time" id="sttime" name="startTime" value="" min="05:00" >
+	 					<label for="entime">종료 :</label>
+	 						<input type="time" id="entime" name="endTime" value=""> 
 					</td>
 				</tr>
 				<tr>
-					<td>시급 입력</td>
+					<th>시급 입력</th>
 					<td>
 						<input type="text" name="pthourlywage" inputmode="numeric">
 						<input type="button" name="calculatePay" value="예상 총 급여 입력">
 					</td>
 				</tr>
 				<tr>
-					<td>예상 총 급여</td>
+					<th>예상 총 급여</th>
 					<td>
 						<input type="text" name="pttotalpay" inputmode="numeric"
 									 readonly="readonly" value="">
 					</td>
 				</tr>
+				<tr>
+					<td colspan="2">
+							<input type="submit" value="근로계약서 마감" >
+							<input type="button" name="insertEvents" value="행사 입력">
+							<input type="reset" value="취소" onclick="history.back();">
+					</td>
+				</tr>
 			</table>
-			<input type="submit" value="근로계약서 마감" >
-			<input type="button" name="insertEvents" value="행사 입력">
-			<input type="reset" value="취소" onclick="history.back();">
 		</form>
+		</div>
 	</c:if>
-	
 	<!-- 마감 처리 후 -->
 	<script>
 	$(document).ready(function() {
@@ -222,7 +237,8 @@
 		<c:if test="${parttimerContract.ptrdate == sysdateTemp}">
 			<input type="button" name="pcModifyStatus" value="수정하기">
 		</c:if>
-			<input type="button" value="취소" onclick="history.back();">
+			<input type="button" value="취소" onclick="location.href='${conPath }/ptEmpConList.do'">
 	</c:if>
+ </div>
 </body>
 </html>

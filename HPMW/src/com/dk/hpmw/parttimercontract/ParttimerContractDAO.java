@@ -431,13 +431,13 @@ public class ParttimerContractDAO {
 //	-- id로  파트타이머용 근로계약서 상세보기  : ParttimerContractDTO detailParttimerContract(String ptid, String ptname)
 	public ArrayList<ParttimerContractDTO> detailIDParttimerContract(String ptid) {
 		ArrayList<ParttimerContractDTO> partDtoarr = new ArrayList<ParttimerContractDTO>();
-		ParttimerContractDTO pcdto = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT PC.*, P.PTEMPCONCHEK FROM PARTTIMER P ,PARTTIMERCONTRACT PC " + 
 									" WHERE P.PTID = PC.PTID AND PC.PTID = ? " + 
 									" AND PC.PTRDATE = TO_DATE(SYSDATE, 'YY/MM/DD') ORDER BY PTCONNO DESC";
+		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);

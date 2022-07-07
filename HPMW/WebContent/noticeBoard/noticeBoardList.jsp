@@ -8,11 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	*{
-		text-align: :center;
-	}
-</style>
+<link href="${conPath }/css/nboardListPage.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>/* 글 상세보기 리스트 클릭시  */
 	$(document).ready(function() {
@@ -22,6 +18,10 @@
 				location.href = '${conPath}/noticeBoardContentDetail.do?nbno='+nbno+'&pageNum=${pageNum}';
 			}
 		});
+// 		$('.noticeBoarddetail').mouseover(function(){
+// 			$('.bdr table tr td~td').css("background-color","#003057");
+// 		});
+		
 	});
 </script>
 </head>
@@ -73,8 +73,12 @@
 	
 	<jsp:include page="../main/header.jsp" />
 	<!-- 헤더  -->
-	<div id="content_form">
-		<table>
+	<div class="bdr">
+		<div class="blHeader">
+			<h2>공지사항 게시판</h2>
+		</div>
+
+		<table class="writeButton">
 			<tr>
 				<td>
 					<c:if test="${not empty manager }">
@@ -83,8 +87,7 @@
 				</td>
 			</tr>
 		</table>
-		<br>
-		<h3>공지사항 게시판</h3>
+
 		<table>
 			<tr>
 				<th>글 번호</th>

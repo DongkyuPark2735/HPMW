@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style></style>
+<link href="${conPath }/css/ptWriteEmpConPage.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -96,38 +96,40 @@
 
 <!-- 헤더 -->
 <jsp:include page="../main/header.jsp"/>
-
-<table>
-		<caption>계정(${parttimer.ptid }) 근로계약서 </caption>
-			<tr>
-				<td colspan="2">${EmployContractForm.ectitle }</td>
-			</tr>
-			<tr>
-				<td colspan="2">${EmployContractForm.eccontent }</td>
-			</tr>
-			<tr>
-				<td colspan="2"><hr></td>
-			</tr>
-	</table>
-
-	<form class="frm" action="${conPath }/ptWriteEmpCon.ptdo" method="post" >
-		<input type="hidden" name="ptconno" value="${parttimerContractdetail.ptconno }"> 
+	<div class="bdr">
+		<div class="pcheader">
+			<h2>계정(${parttimer.ptid }) 근로계약서 </h2>
+			</div>
 		<table>
 			<tr>
-				<td>이름</td>
+				<th colspan="2">${EmployContractForm.ectitle }</th>
+			</tr>
+			<tr>
+				<td colspan="2" class="EmployContract">
+					<textarea rows="40" cols="100" readonly="readonly">${EmployContractForm.eccontent }</textarea>
+				</td>
+			</tr>
+	</table>
+	<hr>
+	<form class="frm" action="${conPath }/ptWriteEmpCon.ptdo" method="post" >
+	 <div class="inputpcinfo">
+		<input type="hidden" name="ptconno" value="${parttimerContractdetail.ptconno }"> 
+		<table>
+	 	
+			<tr>
+				<th>이름</th>
 				<td>
 					<input type="text" name="ptname" value="${parttimerContractdetail.ptname }" maxlength="8" required="required"> 
 				</td>
 			</tr>
 			<tr>
-				<td>연락처</td>
+				<th>연락처</th>
 				<td>
 					<input type="text" name="pttel" value="${parttimerContractdetail.pttel }" maxlength="13" required="required" >
-					<input type="button" name="ptnamecheck" value="이름 검색" >
 				</td>
 			</tr>
 			<tr>
-				<td>이메일</td>
+				<th>이메일</th>
 				<td>
 					<input type="text" name="ptemail" value="${parttimerContractdetail.ptemail }" maxlength="30">
 					<select name="ptemailselect">
@@ -139,11 +141,11 @@
 					</td>
 			</tr>
 			<tr>
-				<td>주소</td>
+				<th>주소</th>
 				<td><input type="text" name="ptaddress" value="${parttimerContractdetail.ptaddress }"></td> <!-- 특수문자 금지  -->
 			</tr>
 			<tr>
-				<td>계좌번호</td>
+				<th>계좌번호</th>
 				<c:if test="${parttimer.ptempconchek eq 0 }">
 					<td>
 					<select name="btno">
@@ -172,28 +174,33 @@
 					</c:forEach>
 				</c:if>
 			</tr>
+
 			<tr>
-				<td colspan="2"><hr></td>
+				<c:if test="${parttimer.ptempconchek eq 0}"> 
+				 <td colspan="2">
+					<c:if test="${empty parttimerContractdetail}">  <!-- 첫 작성 일때 입력 버튼 -->
+						<input type="submit" value="근로계약서  정보 입력" >
+						<input type="reset" value="로그인 화면으로" onclick="location.href='${conPath}/ptLoginView.ptdo'">
+					</c:if>
+					<c:if test="${not empty parttimerContractdetail}">	<!-- 수정하기 일때 입력 버튼  -->
+						<input type="submit" value="근로 계약서 정보 수정 ">
+					</c:if>
+				 </td>
+				</c:if>
+				
+				<c:if test="${parttimer.ptempconchek eq 1}">	
+					<td colspan="2">
+						<c:if test="${parttimerContractdetail.ptstatus eq 0}"> <!-- 수정하기  -->
+							<input type="button" value="수정하기" name="modifyParttimerInfo" onclick="location.href='${conPath}/modifyParttimerInfo.ptdo'" >
+						</c:if>
+						<input type="reset" value="돌아가기" onclick="location.href='${conPath}/main.do'">
+					</td>
+				</c:if>
 			</tr>
 		</table>
-		
-		<c:if test="${parttimer.ptempconchek eq 0}"> 
-			<c:if test="${empty parttimerContractdetail}">  <!-- 첫 작성 일때 입력 버튼 -->
-				<input type="submit" value="근로계약서  정보 입력" >
-				<input type="reset" value="로그인 화면으로" onclick="location.href='${conPath}/ptLoginView.ptdo'">
-			</c:if>
-			<c:if test="${not empty parttimerContractdetail}">	<!-- 수정하기 일때 입력 버튼  -->
-				<input type="submit" value="근로 계약서 정보 수정 ">
-			</c:if>
-		</c:if>
-		
-		<c:if test="${parttimer.ptempconchek eq 1}">	
-			<c:if test="${parttimerContractdetail.ptstatus eq 0}"> <!-- 수정하기  -->
-				<input type="button" value="수정하기" name="modifyParttimerInfo" onclick="location.href='${conPath}/modifyParttimerInfo.ptdo'" >
-			</c:if>
-			<input type="reset" value="돌아가기" onclick="location.href='${conPath}/main.do'">
-		</c:if>
+	 </div>
 	</form>
+	</div>
 	<!-- 마감 처리 전 -->
 </body>
 </html>

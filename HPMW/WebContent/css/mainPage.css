@@ -1,0 +1,80 @@
+@charset "UTF-8";
+*{
+	margin : 0 auto;
+}
+
+div.bdr{
+	width: 80%;
+	max-width: 1080px;
+	margin: 0 auto;
+	
+}
+
+div.bdr h2{
+	width: 200%;
+	line-height: 50px;
+	margin-left: -50%;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	
+}
+
+.bdtitle {
+	margin: 0 auto;
+	margin-top : 100px;
+	font-size: 20px;
+	line-height: 10px;
+	width: 120px;
+	border-top: 5px solid #517891;
+	border-bottom: 5px solid #517891;
+	text-align: center;
+	margin : 70px auto;
+}
+
+div.bdr table{
+	border-spacing: 0px;
+	width: 100%;
+	/* 테이블 넘치는거 고정 */
+	table-layout: fixed;
+}
+
+div.bdr table th,td{
+	line-height: 30px;
+	/* 이거는 넘치는 텍스트 ... 처리용 */
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
+div.bdr table tr td {
+   text-align: center;
+   padding: 20px;
+}
+
+div.bdr table tr:last-child td{
+   font-weight: bold;
+}
+
+th{
+	margin : 10px;
+	padding : 10px;
+	border : 2px solid white;
+	background-color: #517891;
+	line-height: 30px;
+	font-size: 18px;
+	color: white;
+	border-radius: 10px;
+}
+div.bdr table tr td a{
+	color: #333;
+}
+div.bdr table tr td a:hover{
+	color: #DBD1B4;
+}
+div.bdr table tr td p{
+	font-size: 15px;
+	font-weight: 500;
+	text-align: center;
+	line-height: 30px;
+	margin-top: 0;
+}
+	

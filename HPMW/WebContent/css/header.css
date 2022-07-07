@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+body{
+	margin: 0;
+	padding: 0;
+}
+header.lnb a {
+	color : white;
+	text-decoration: none;
+}
+
+html, h1, h2, h3, h4, h5, h6, p, div, li {
+	padding: 0;
+	margin: 0;
+}
+
+ul {
+	list-style: none;
+}
+
+#headerBar {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin: 0 auto;
+	background-color: #517891;
+}
+
+#headerBarleft{
+	padding-top : 10px;
+	width: 20%;
+	height: 30px;
+}
+
+#headerBarRight ul {
+	display : flex;
+	padding : 5px 0;
+	text-align: center;
+	color : white;
+}
+
+#headerBarRight ul>li {
+	cursor: pointer;
+	padding: 0 10px;
+	line-height: 40px;
+	font-size: 17px;
+	font-weight: bold;
+	width: 150px;
+}
+
+#headerBarRight ul>li:nth-child(1) {
+	border: 0;
+}

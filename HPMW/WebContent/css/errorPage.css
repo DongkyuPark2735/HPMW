@@ -1,0 +1,40 @@
+@charset "UTF-8";
+*{
+	margin: 0 auto;
+}
+.wrap{
+	width: 1000px;
+	margin: 0 auto;
+}
+.erheader{
+	margin-top : 50px;
+	margin-bottom : 50px;
+	font-size: 20px;
+	line-height: 10px;
+	width: 210px;
+	border-top: 5px solid #517891;
+	border-bottom: 5px solid #517891;
+	text-align: center;
+	color : #003057;
+}
+
+.erheader h2{
+	width: 200%;
+	margin-left: -50%;
+	line-height: 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+.erWrap{
+	width: 100%;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	text-align: center;
+}
+.erWrap>h2 a{
+	text-decoration: none;
+	color : black;
+}
+
+
+

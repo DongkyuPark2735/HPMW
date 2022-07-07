@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style></style>
+<link href="${conPath }/css/noticeBoardPage.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 			$(document).ready(function() {
@@ -34,23 +34,26 @@
 <body>
 <!-- 헤더 -->
 <jsp:include page="../main/header.jsp" />
+	<div class="bdr">
 		<form action="${conPath }/noticeBoardModify.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="pageNum" value="${pageNum}">
 			<input type="hidden" name="oldnbfilename" value="${NoticeBoardDetail.nbfilename}">
 			<input type="hidden" name="nbno" value="${NoticeBoardDetail.nbno}">
+			<div class="bcHeader">
+				<h2>${noticBoardDetail.nbno }번 공지사항 상세보기</h2>
+			</div>
 			<table>
-				<caption>글쓰기</caption>
 				<tr>
-					<td>제목</td>
+					<th>제목</th>
 					<td><input type="text" name="nbtitle" required="required" size="30"
 										 value="${NoticeBoardDetail.nbtitle}"></td>
 				</tr>
 				<tr>
-					<td>작성자</td>
+					<th>작성자</th>
 					<td><input type="text" name="mname" value="${manager.mname }(${manager.mno })" readonly="readonly"></td>
 				</tr>
 				<tr>
-					<td>본문</td>
+					<th>본문</th>
 					<td>
 						<textarea name="nbcontent" rows="30" cols="80">${NoticeBoardDetail.nbcontent}</textarea>
 					 </td>
@@ -59,13 +62,13 @@
 					<td><p class="lmitContentLength"></p></td>
 				</tr>
 				<tr>
-					<td>첨부파일</td>
+					<th>첨부파일</th>
 					<td>
 						<input type="file" name="nbfilename" >
 						<img src="${conPath }/noticeBoardFile/${NoticeBoardDetail.nbfilename}" width="300" height="300">
 					</td>
 				</tr>
-				<tr>
+				<tr class="nbinput">
 					<td colspan="2">
 							<input type="submit" value="글수정" class="btn">
 							<input type="reset" value="취소" class="btn">
@@ -74,5 +77,6 @@
 				</tr>	
 			</table>
 		</form>
+	</div>
 </body>
 </html>

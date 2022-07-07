@@ -8,14 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style></style>
+<link href="${conPath }/css/managerboardListPage.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			
-			
-		});
-	</script>
 </head>
 <body>
 	<c:if test="${not empty ManagerDeleteMSG}">
@@ -27,13 +21,25 @@
 	<!-- 해더 -->
 	<jsp:include page="../main/header.jsp" />
 	<!-- 매니저 관리자 리스트 -->
-	<p>매니저 리스트</p>
+	<div class="bdr">
+		<div class="blHeader">
+			<h2>매니저 리스트</h2>
+		</div>
+		
+		<table class="writeButton">
+			<tr>
+				<td>
+					<input type="button" class="btn" value="매니저 관리자 입력" onclick="location.href='${conPath }/managerInsertView.do'">
+				</td>
+			</tr>
+		</table>
+
 	<table>
 			<tr>
 				<th>사 번</th>
 				<th>사원 이름</th>
 				<th>사원 등급</th>
-				<td><input type="button" value="매니저 관리자 입력" onclick="location.href='${conPath }/managerInsertView.do'"></td>
+				<th></th>
 			</tr>
 			<c:if test="${empty managerList}">
 				<tr>
@@ -55,12 +61,13 @@
 							${managerLists.allevel }
 						</td>
 						<td>
-							<input type="button" value="매니저 삭제" onclick="location.href='${conPath }/managerDelete.do?mno=${managerLists.mno }'">
+							<input type="button" class="btn" value="매니저 삭제" onclick="location.href='${conPath }/managerDelete.do?mno=${managerLists.mno }'">
 						</td>
 					<tr>
 				</c:forEach>		
 			</c:if>
 		</table>
+	</div>
 </body>
 </html>
 

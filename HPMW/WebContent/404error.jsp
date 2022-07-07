@@ -10,20 +10,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style></style>
+<link href="${conPath }/css/errorPage.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			
-			
-		});
-	</script>
 </head>
 <body>
+<div class="wrap">
+ <div class="erheader">
 	<h2>404에러 페이지 입니다.</h2>
+ </div>
+ <div class="erWrap">
 	<h2>죄송합니다. 요청하신 페이지를 찾을수 없습니다.</h2>
-	
-	<h2>오류 보고 <a>aaaa@naver.com</a> 010-0000-0000</h2>
-
+	<br>
+	<h2><a href="${conPath }/main.do">메인으로</a></h2>
+ </div>
+</div>
 </body>
 </html>

@@ -1,0 +1,145 @@
+@charset "UTF-8";
+*{
+	margin : 0 auto;
+}
+
+div.bdr{
+	width: 70%;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.bdr .pcheader{
+	margin: 0 auto;
+	margin-top : 100px;
+	margin-bottom : 50px;
+	font-size: 20px;
+	line-height: 10px;
+	width: 250px;
+	border-top: 5px solid #517891;
+	border-bottom: 5px solid #517891;
+	text-align: center;
+	color : #003057;
+}
+
+.bdr .pcheader h2{
+	width: 200%;
+	margin-left: -50%;
+	line-height: 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+div.bdr h2{
+	font-size: 20px;
+	line-height: 30px;
+	font-weight: 400;
+}
+
+div.bdr table{
+	border-spacing: 0px;
+	width: 90%;
+	/* 테이블 넘치는거 고정 */
+	table-layout: fixed;
+}
+hr{
+	margin: 20px auto;
+	width: 90%;
+	height: 5px;
+	background-color: #003057;
+	border-radius: 10px; 
+}
+
+div.bdr table th,td{
+	line-height: 30px;
+	/* 이거는 넘치는 텍스트 ... 처리용 */
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+  margin-bottom: 10px;
+}
+.pcinfoform{
+	width: 80%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+div.bdr table tr td {
+   text-align: center;
+   padding: 20px;
+   border-bottom: 2px solid #517891;
+	 padding: 5px;
+}
+select {
+	border: 2px solid #003057; 
+	border-radius: 10px;
+	height: 30px;
+}
+
+th{
+	margin : 10px;
+	padding : 10px;
+	border : 2px solid white;
+	background-color: #517891;
+	line-height: 30px;
+	font-size: 14px;
+	width: 120px;
+	color: white;
+	border-radius: 10px;
+}
+input{
+	background-color : #517891;
+	border: none;
+	width: 150px;
+	height: 50px;
+	font-size: 14px;
+	border-radius: 10px;
+	color : #003057;
+}
+
+input:hover{
+	background-color: #003057;
+	color: #fff;
+	cursor: pointer;
+}
+
+label{
+	display : inline-block;
+	color: white;
+	background: #517891;
+	border-radius: 10px;
+	width: 60px;
+}
+.inputpcinfo{
+	margin : 20px auto;
+	width: 90%;
+}
+
+.inputpcinfo table{
+	margin-bottom: 100px;
+	
+}
+.inputpcinfo table th{
+	height: 30px;
+	padding: 5px;
+}
+
+.inputpcinfo table tr:last-child td{
+	padding-top : 50px;
+	border-bottom: none;
+}
+
+.inputpcinfo table tr:not(:last-child) td input{
+	height: 30px;
+	
+}
+.inputpcinfo table tr td input[type='text'], .inputpcinfo table tr td input[type='time']{
+	background-color: white;
+	border: 2px solid #003057; 
+}
+.inputpcinfo table tr td input[type='text']:hover, .inputpcinfo table tr td input[type='time']:hover{
+	background-color: #003057;
+	color: white;
+}
+
+	

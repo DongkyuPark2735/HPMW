@@ -8,11 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	*{
-		text-align: center;
-	}
-</style>
+<link href="${conPath }/css/pcboardListPage.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 /* 글 상세보기 리스트 클릭시  */
@@ -20,7 +16,7 @@
 		$('.pcContractDetail').click(function(){
 			var ptconno = $(this).siblings('.pcContractno').text();
 			if(!isNaN(ptconno)){
-				location.href = '${conPath}/ptModifyEmpConView.do?ptconno='+ptconno+'&pageNum=${pageNum}';
+				location.href = '${conPath}/ptModifyEmpConView.do?ptconno='+ptconno+'&pageNum=${pageNum }';
 			}
 		});
 	});
@@ -67,53 +63,52 @@
 	
 	<jsp:include page="../main/header.jsp" />
 	<!-- 헤더  -->
-	<div id="content_form">
-		<table>
+	<div class="bdr">
+		<div class="blHeader">
+			<h2>파트타이머 근로계약서 목록</h2>
+		</div>
+		
+		<table class="writeButton">
 			<tr>
 				<td>
-<%-- 					<c:if test="${not empty manager }"> --%>
-<%-- 						<a href="${conPath }/eventsBoardWriteView.do?pageNum=${pageNum }">행사 입력</a> --%>
-<%-- 					</c:if> --%>
+					<input type="button" class="btn" value="지난 근로계약서 보기" onclick="location.href='${conPath }/pastptEmpConList.do'">
 				</td>
 			</tr>
 		</table>
-		<br>
-		<h3>파트타이머 근로계약서 게시판</h3>
-		<input type="button" value="지난 근로계약서 보기" onclick="location.href='${conPath }/pastptEmpConList.do'">
-		<table>
-			<tr>
-				<th>근로계약서 번호</th>
-				<th>파트타이머 ID</th>
-				<th>파트타이머 이름</th>
-				<th>파트타이머 전화번호</th>
-				<th>행사 번호</th>
-				<th>근로계약서 작성 날짜</th>
-				<th>마감 여부</th>
-			</tr>
-			<c:if test="${totCnt==0 }">
+			
+			<table>
 				<tr>
-					<td colspan="6">당일 계약서를 작성한 파트타이머가 없습니다</td>
+					<th>근로계약서 번호</th>
+					<th>ID</th>
+					<th>이름</th>
+					<th>전화번호</th>
+					<th>행사 번호</th>
+					<th>근로계약서<br>작성 날짜</th>
+					<th>마감 여부</th>
 				</tr>
-			</c:if>
-			<!-- 파트타이머 당일 목록 출력 -->
-			<c:if test="${totCnt!=0 }">
-				<c:forEach items="${pcContractList }" var="pcContractLists">
-					<fmt:formatDate var="sysdateTemp" value="${sysdate }" pattern="yyyy-MM-dd"/>
-					<c:if test="${pcContractLists.ptrdate eq sysdateTemp}">
-						<tr>
-							<td class="pcContractno">${pcContractLists.ptconno }</td>
-							<td class="pcContractDetail">${pcContractLists.ptid }</td>
-							<td class="pcContractDetail">${pcContractLists.ptname }</td>
-							<td>${pcContractLists.pttel}</td>
-							<td>${pcContractLists.evno}</td>
-							<td>${pcContractLists.ptrdate}</td>
-							<td>${pcContractLists.ptstatus}</td>
-						</tr>
-					</c:if>
-				</c:forEach>
-			</c:if>
-		</table>
-		<!-- 페이징 번호 출력 -->
+				<c:if test="${totCnt==0 }">
+					<tr>
+						<td colspan="7">당일 계약서를 작성한 파트타이머가 없습니다</td>
+					</tr>
+				</c:if>
+				<!-- 파트타이머 당일 목록 출력 -->
+				<c:if test="${totCnt!=0 }">
+					<c:forEach items="${pcContractList }" var="pcContractLists">
+						<fmt:formatDate var="sysdateTemp" value="${sysdate }" pattern="yyyy-MM-dd"/>
+						<c:if test="${pcContractLists.ptrdate eq sysdateTemp}">
+							<tr>
+								<td class="pcContractno">${pcContractLists.ptconno }</td>
+								<td class="pcContractDetail">${pcContractLists.ptid }</td>
+								<td class="pcContractDetail">${pcContractLists.ptname }</td>
+								<td>${pcContractLists.pttel}</td>
+								<td>${pcContractLists.evno}</td>
+								<td>${pcContractLists.ptrdate}</td>
+								<td>${pcContractLists.ptstatus}</td>
+							</tr>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</table>
 		<div class="paging">
 			<c:if test="${startPage > BLOCKSIZE }">
 			[ <a href="${conPath }/ptEmpConList.do?pageNum=${startPage-1}"> 이전 </a> ]

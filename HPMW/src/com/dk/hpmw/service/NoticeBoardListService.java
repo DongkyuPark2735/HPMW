@@ -14,11 +14,14 @@ public class NoticeBoardListService implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println(request.getParameter("pageNum"));
 		String pageNum = request.getParameter("pageNum");
-		if(pageNum==null || pageNum=="") {
+		if(pageNum == null || pageNum == "") {
+			System.out.println(request.getParameter(pageNum));
 			if(request.getAttribute("pageNum")==null) {
+				System.out.println(request.getParameter(pageNum));
 				pageNum = "1";
 			}else {
 				pageNum = (String)request.getAttribute("pageNum");
+				System.out.println(request.getParameter(pageNum));
 			}
 		}
 		int currentPage = Integer.parseInt(pageNum);

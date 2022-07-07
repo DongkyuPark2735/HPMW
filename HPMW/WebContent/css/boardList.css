@@ -1,0 +1,59 @@
+@charset "UTF-8";
+ * {
+	margin: 0 auto;
+}
+article {
+	width: 1000px; 
+	height:800px;
+	margin: 30px auto 0px;
+}
+article header{
+	width:90%;
+	height:100px;
+	margin: 20px auto 0;
+	text-align: left;
+}
+article section{
+	width:90%;
+	height: 500px;
+	margin: 0 auto;
+}
+article section div.write{
+	width:90%;
+	height:40px;
+	margin: 0 auto;
+	text-align: right; 
+}
+article section table{
+	width:90%;
+	margin: 0 auto;
+}
+article section table tr { 
+	height: 10px;
+}
+article section td, article section th {
+	text-align: center;
+	padding:5px; 
+}
+article footer{
+	width:90%;
+	height:25px;
+	text-align:center;
+	margin:0 auto;
+}
+input.btn{
+	margin:10px auto;
+	margin-left:10px;
+	width:200px;
+	hegiht:30px;
+	border:none;
+	border-radius:10px;
+	background-color: #517891;
+	color:white;
+	font-size:15px;
+	text-align:center;
+	radius:0;
+}
+input.btn:hover{
+	background-color: black;
+}

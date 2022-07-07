@@ -8,11 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style></style>
+<link href="${conPath }/css/nbboardContentPage.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			
 			
 		});
 	</script>
@@ -20,32 +19,38 @@
 <body>
 		<!-- 해더 -->
 	<jsp:include page="../main/header.jsp" />
+		<div class="bdr">
+			<div class="nbheader">
+				<h2>${noticBoardDetail.nbno }번 공지사항 상세보기</h2>
+			</div>
 			<table>
-				<caption>${noticBoardDetail.nbno }번 공지사항 상세보기</caption>
 				<tr>
-					<td>제목</td>
+					<th>제목</th>
 					<td>${noticBoardDetail.nbtitle }</td>
 				</tr>
 				<tr>
-					<td>작성자</td>
+					<th>작성자</th>
 					<td>${noticBoardDetail.mno }</td>
 				</tr>
 				<tr>
-					<td>본문</td>
-					<td>${noticBoardDetail.nbcontent }</td>
+					<th>조회수</th>
+					<td>${noticBoardDetail.nbhit }</td>
 				</tr>
 				<tr>
-					<td>첨부파일</td>
+					<th colspan="2">본문</th>
+				</tr>
+				<tr>
+					<td colspan="2" class="nbcontent">${noticBoardDetail.nbcontent }</td>
+				</tr>
+				
+				<tr>
+					<th>첨부파일</th>
 					<td>
 						<img src="${conPath }/noticeBoardFile/${noticBoardDetail.nbfilename }" width="300" height="300"> 
 					</td>
 				</tr>
 				<tr>
-					<td>조회수</td>
-					<td>${noticBoardDetail.nbhit }</td>
-				</tr>
-				<tr>
-					<td>작성일</td>
+					<th>작성일</th>
 					<td>${noticBoardDetail.nbrdate }</td>
 				</tr>
 				<tr>
@@ -60,5 +65,6 @@
 					</td>
 				</tr>	
 			</table>
+		</div>
 </body>
 </html>

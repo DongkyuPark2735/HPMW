@@ -38,7 +38,6 @@ public class PtWriteEmpConViewService implements Service {
 		ArrayList<BankTypeDTO> btdtoarr = btdao.listBankType();
 		request.setAttribute("BankType", btdtoarr); // 은행정보 
 		
-		
 		request.setAttribute("ParttimerContractInsetResult", request.getAttribute("ParttimerContractInsetResult"));
 		// 정보 입력 결과 재할당 
 		

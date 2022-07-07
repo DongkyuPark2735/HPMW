@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dk.hpmw.parttimercontract.ParttimerContractDAO;
 import com.dk.hpmw.parttimercontract.ParttimerContractDTO;
+import com.dk.hpmw.pastparttimercontractdata.PastParttimerContractDataDAO;
+import com.dk.hpmw.pastparttimercontractdata.PastParttimerContractDataDTO;
 
 public class PastPtEmpConListService implements Service {
 
@@ -25,14 +27,15 @@ public class PastPtEmpConListService implements Service {
 		final int PAGESIZE=10, BLOCKSIZE=10;
 		int startRow = (currentPage-1) * PAGESIZE +1;
 		int endRow   = startRow + PAGESIZE -1;
-		ParttimerContractDAO pcdao = ParttimerContractDAO.getInstance(); 
-		ArrayList<ParttimerContractDTO> pclist = pcdao.listParttimerContract(startRow, endRow);
+		
+		PastParttimerContractDataDAO ppcddao = PastParttimerContractDataDAO.getInstance(); 
+		ArrayList<PastParttimerContractDataDTO> pclist = ppcddao.listPastParttimerContractData(startRow, endRow);
 		
 		Date sysdate = new Date();
-		request.setAttribute("pcContractList", pclist);
+		request.setAttribute("ppContractDataList", pclist);
 		request.setAttribute("sysdate", sysdate);
-		int totCnt = pcdao.parttimerContractTotcnt();// 글갯수
-		int pageCnt = (int)Math.ceil((double)totCnt/PAGESIZE);//페이지갯수
+		int totCnt = ppcddao.PastParttimerContractDataTotcnt();
+		int pageCnt = (int)Math.ceil((double)totCnt/PAGESIZE);
 		int startPage = ((currentPage-1)/BLOCKSIZE)*BLOCKSIZE+1;
 		int endPage = startPage + BLOCKSIZE - 1;
 		if(endPage>pageCnt) {

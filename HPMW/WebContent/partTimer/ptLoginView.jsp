@@ -8,19 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	*{
-		margin : 0 auto;
-		
-	}
-	#wrap{
-		width: 1000px;
-		height: 500px;
-		text-align: center;		
-		margin-top: 1000px;
-	}
-	
-</style>
+<link href="${conPath }/css/loginPage.css" rel="stylesheet"> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -36,18 +24,25 @@
 		alert("${logoutMSG }");
 	</script>
 </c:if>
+	<div class="warpLogo">
+		<div class="logo">
+			<h2>Hotel Parttimer Management System</h2>
+		</div>
+	</div>
 	<div class="wrap">
 		<form action="${conPath }/ptLogin.ptdo" method="post" >
 			<table>
 			<caption><b>파트타이머 로그인 페이지</b></caption>
 				<tr>
 					<td>
-						<input type="text" name="ptid" placeholder="전화번호 뒷 4자리를 입력하세요" required="required" maxlength="4" >
+						<label for="ptidClass">아이디</label>
+						<input type="text" id="ptidClass" name="ptid" placeholder="전화번호 뒷 4자리를 입력하세요" required="required" maxlength="4" >
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="password" name="ptpw" placeholder="비밀번호를 입력하세요 최초 비밀번호는 전화번호 뒷  4자리 입니다." required="required">
+						<label for="ptpwClass">비밀번호</label>
+						<input type="password" id="ptpwClass" name="ptpw" placeholder="최초 비밀번호는 전화번호 뒷  4자리 입니다." required="required">
 					</td>
 				</tr>
 				<tr>

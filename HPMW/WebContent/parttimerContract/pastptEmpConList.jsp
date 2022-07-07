@@ -8,38 +8,50 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	*{
-		text-align: center;
-	}
-</style>
+<link href="${conPath }/css/pastpcboardListPage.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 /* 글 상세보기 리스트 클릭시  */
-	$(document).ready(function() {
+	/* $(document).ready(function() {
 		$('.pcContractDetail').click(function(){
 			var ptconno = $(this).siblings('.pcContractno').text();
 			if(!isNaN(ptconno)){
 				location.href = '${conPath}/ptModifyEmpConView.do?ptconno='+ptconno+'&pageNum=${pageNum}';
 			}
 		});
-	});
+	}); */
 </script>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<!-- 헤더  -->
-	<div id="content_form">
-		<h3> 마감된 근로계약서 목록 </h3>
-		<input type="button" value="당일 근로계약서 보기" onclick="location.href='${conPath }/ptEmpConList.do'">
+	<div class="bdr">
+		<div class="blHeader">
+			<h2> 지난 근로계약서 목록 </h2>
+		</div>
+		<table class="writeButton">
+			<tr>
+				<td>
+					<input type="button" value="당일 근로계약서 보기" class="btn" onclick="location.href='${conPath }/ptEmpConList.do'">
+				</td>
+			</tr>
+		</table>
+		
 		<table>
 			<tr>
+				<th>구분번호</th>
 				<th>근로계약서 번호</th>
-				<th>파트타이머 ID</th>
-				<th>파트타이머 이름</th>
-				<th>파트타이머 전화번호</th>
+				<th>ID</th>
+				<th>이름</th>
+				<th>전화번호</th>
+				<th>이메일</th>
+				<th>주 소</th>
 				<th>행사 번호</th>
-				<th>마감 여부</th>
+				<th>마감<br>여부 </th>
+				<th>근무<br>시간</th>
+				<th>시급</th>
+				<th>예상 지급액</th>
+				<th>근로 날짜</th>
 			</tr>
 			<c:if test="${totCnt==0 }">
 				<tr>
@@ -48,18 +60,22 @@
 			</c:if>
 			<!-- 파트타이머 지난 목록 출력 -->
 			<c:if test="${totCnt!=0 }">
-				<c:forEach items="${pcContractList }" var="pcContractLists">
-					<fmt:formatDate var="sysdateTemp" value="${sysdate }" pattern="yyyy-MM-dd"/>
-					<c:if test="${pcContractLists.ptrdate != sysdateTemp}">
+				<c:forEach items="${ppContractDataList }" var="ppContractDataLists">
 						<tr>
-							<td class="pcContractno">${pcContractLists.ptconno }</td>
-							<td class="pcContractDetail">${pcContractLists.ptid }</td>
-							<td class="pcContractDetail">${pcContractLists.ptname }</td>
-							<td>${pcContractLists.pttel}</td>
-							<td>${pcContractLists.evno}</td>
-							<td>${pcContractLists.ptstatus}</td>
+							<td>${ppContractDataLists.pcdatano }</td>
+							<td class="pcContractno">${ppContractDataLists.ptconno }</td>
+							<td class="pcContractDetail">${ppContractDataLists.ptid }</td>
+							<td class="pcContractDetail">${ppContractDataLists.ptname }</td>
+							<td>${ppContractDataLists.pttel}</td>
+							<td>${ppContractDataLists.ptemail}</td>
+							<td>${ppContractDataLists.ptaddress}</td>
+							<td>${ppContractDataLists.evno}</td>
+							<td>${ppContractDataLists.ptstatus}</td>
+							<td>${ppContractDataLists.ptworktime}</td>
+							<td>${ppContractDataLists.pthourlywage}</td>
+							<td>${ppContractDataLists.pttotalpay}</td>
+							<td>${ppContractDataLists.ptrdate}</td>
 						</tr>
-					</c:if>
 				</c:forEach>
 			</c:if>
 		</table>

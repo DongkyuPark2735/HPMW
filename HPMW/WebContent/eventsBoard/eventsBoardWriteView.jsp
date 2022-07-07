@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style></style>
+<link href="${conPath }/css/evboardPage.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -50,45 +50,51 @@
 </head>
 <body>
 <jsp:include page="../main/header.jsp" />
+	<div class="bdr">
+		<div class="evheader">
+			<h2>행사 입력</h2>
+		</div>
 		<form action="${conPath}/eventsBoardWrite.do" method="post">
 			<table>
-				<caption>행사 입력</caption>
 				<tr>
-					<td>행사명</td>
+					<th>행사명</th>
 					<td>
 						<input type="text" name="evtitle" required="required"></td>
 				</tr>
 				<tr>
-					<td>행사 상세정보</td>
-					<td>
-						<textarea rows="40" cols="100" name="evdetail"></textarea>
+					<th colspan="2">행사 상세정보</th>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="txtwrap" style="white-space: pre-wrap;">
+							<textarea rows="40" cols="100" name="evdetail"></textarea>
+						</div>
+						<h5 class="textResult"></h5>
+						<h5 class="lmitContentLength"></h5>
 					</td>
 				</tr>
+			</table>
+			
+			<table class="evbottom">
 				<tr>
-					<td colspan="2"><p class="lmitContentLength"></p></td>
-				</tr>
-				<tr>
-					<td>행사 일시</td>
+					<th>행사 일시</th>
 					<td><input type="text" name="evstartdate" id="evstartdate"></td>
 				</tr>
 				<tr>
-					<td>행사 유형</td>
+					<th>행사 유형</th>
 					<td>
 						<select name="etno">
 							<c:forEach var="evtype" items="${eventsTypeList }">
-									<option>${evtype.etno }(${evtype.etname })</option>	
+									<option>${evtype.etno } (${evtype.etname })</option>	
 							</c:forEach>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td>작성자</td>
+					<th>작성자</th>
 					<td>
 						<input type="text" value="${manager.mno }" name="mno" readonly="readonly">
 					</td>
-				</tr>
-				<tr>
-					<td><p class="textResult"></p></td>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -100,6 +106,7 @@
 				</tr>	
 			</table>
 		</form>
+	</div>
 </body>
  <!-- datepicker -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">

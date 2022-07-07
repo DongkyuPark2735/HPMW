@@ -20,7 +20,7 @@ public class EmpContractModifyService implements Service {
 		ecdto.setEcno(ecno);
 		ecdto.setEctitle(ectitle);
 		ecdto.setEccontent(eccontent);
-		
+		System.out.println(eccontent);
 		int result = ecdao.modifyEmployContract(ecdto);
 		
 		if(result == EmployContractDAO.EmployContractInsetSUCCESS) {

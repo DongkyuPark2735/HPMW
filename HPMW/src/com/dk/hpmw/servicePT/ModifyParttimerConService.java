@@ -53,7 +53,9 @@ public class ModifyParttimerConService implements Service {
 				if(PtempconchekResult == ParttimerDAO.ParttimerLoginSUCCESS) {
 					session.setAttribute("ptconno", pcdao.detailParttimerContract(ptid, ptname).getPtconno());
 					request.setAttribute("ParttimerContractInsetResult", "근로계약서 수정 완료하였습니다.");
+					System.out.println(application.getAttribute("blockParttimerContractInsert")+"있다.");
 					application.removeAttribute("blockParttimerContractInsert");
+					System.out.println(application.getAttribute("blockParttimerContractInsert")+"없다");
 				}else {
 					request.setAttribute("ParttimerContractInsetResult", "근로계약서 수정 실패 하였습니다. 아이디와 이름을 확인하세요");
 				}

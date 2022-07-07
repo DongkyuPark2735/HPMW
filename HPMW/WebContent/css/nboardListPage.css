@@ -1,0 +1,131 @@
+@charset "UTF-8";
+*{
+	margin : 0 auto;
+}
+a{
+	text-decoration : none;
+}
+div.bdr{
+	width: 80%;
+	max-width: 1080px;
+	margin: 0 auto;
+	
+}
+
+.bdr .blHeader{
+	margin: 0 auto;
+	font-size: 20px;
+	line-height: 10px;
+	width: 120px;
+	border-top: 5px solid #517891;
+	border-bottom: 5px solid #517891;
+	text-align: center;
+	margin : 40px auto;
+	margin-top : 100px;
+}
+
+.bdr .blHeader h2{
+	width: 200%;
+	line-height: 50px;
+	margin-left: -50%;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	
+}
+
+div.bdr table{
+	border-spacing: 0px;
+	width: 100%;
+	/* 테이블 넘치는거 고정 */
+	table-layout: fixed;
+}
+
+div.bdr table th,td{
+	line-height: 30px;
+	/* 이거는 넘치는 텍스트 ... 처리용 */
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
+
+div.bdr table tr td {
+   text-align: center;
+   padding: 20px;
+}
+
+div.bdr .writeButton tr td{
+	width : 50px;
+	height : 10px;
+	display: block;
+	float: right;
+	background-color: #517891;
+	border: 1px solid white;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	line-height : 10px;
+}
+div.bdr .writeButton tr td a{
+	color : white;
+	font-size: 14px;
+}
+div.bdr .writeButton tr td:hover{
+	background-color: #003057;
+}
+
+div.bdr table tr td.noticeBoarddetail:hover{
+	color : white;
+	background-color: #003057;
+	cursor: pointer;
+}
+
+div.bdr table tr td.noticeBoarddetail:hover~td{
+	color : white;
+	background-color: #003057;
+}
+
+th{
+	margin : 10px;
+	padding : 10px;
+	border : 2px solid white;
+	background-color: #517891;
+	line-height: 30px;
+	font-size: 16px;
+	color: white;
+	border-radius: 10px;
+	
+}
+
+div.bdr table th:nth-child(1) {
+	width: 70px;
+}
+div.bdr table th:nth-child(2) {
+	width: 100px;
+}
+div.bdr table th:nth-child(3) {
+	width: 150px;
+}
+div.bdr table th:nth-child(4) {
+}
+div.bdr table th:nth-child(5) {
+	width: 70px;
+}
+div.bdr table th:nth-child(6) {
+	width: 100px;
+}
+
+div.paging a{
+	text-decoration : none;
+	color: #333;
+}
+
+div.paging a:hover{
+	color: white;
+	background-color:#517891; 
+}
+div.paging {
+	font-size: 15px;
+	text-align: center;
+	line-height: 30px;
+	margin-top: 30px;
+	margin-bottom: 100px;
+}

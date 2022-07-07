@@ -18,7 +18,7 @@ public class ModifyParttimerInfoService implements Service {
 		String pcconno = (String)request.getAttribute("pcconno");
 		
 		application.setAttribute("blockParttimerContractInsert", "b"+pcconno);
-		
+		System.out.println(application.getAttribute("blockParttimerContractInsert"));
 		ParttimerDTO parttimer = (ParttimerDTO)session.getAttribute("parttimer");
 		ParttimerDAO ptdao = ParttimerDAO.getInstance();
 		int result = ptdao.deleteParttimerPtempconchek(parttimer.getPtid());

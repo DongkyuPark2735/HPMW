@@ -23,8 +23,11 @@ public class PtMyEventsViewService implements Service {
 		ParttimerContractDTO pcdto = null;
 		if(!pcdtoarr.isEmpty()) {
 			pcdto = pcdtoarr.get(0);
+			
 			EventsDAO evdao = EventsDAO.getInstance();
-			request.setAttribute("EventsDetail", evdao.detailEvents(pcdto.getEvno()));
+			
+			request.setAttribute("EventsDetail", evdao.detailEvents(pcdto.getEvno()));// 할당된 행사 
+			
 		}
 	}
 }

@@ -1,0 +1,41 @@
+@charset "UTF-8";
+ * {
+	margin: 0 auto;
+}
+#contentForm {
+	width: 1000px; 
+	height:800px;
+	margin: 30px auto;
+	font-size: 14px;
+}
+#contentForm #pctitle{
+	width:90%;
+	height:100px;
+	margin: 20px auto 0;
+	text-align: left;
+}
+#contentForm #ptwrap{
+	width:90%;
+	height: 500px;
+	margin: 0 auto;
+}
+#contentForm #ptwrap #psatPtList{
+	width:90%;
+	height:20px;
+	margin: 0 auto;
+	text-align: right; 
+}
+#contentForm #ptwrap table{
+	width:90%;
+	margin: 0 auto;
+}
+#contentForm #ptwrap table tr { 
+	height: 10px;
+	background-color: #4f5b93;
+}
+#contentForm #ptwrap td, #contentForm #ptwrap th{
+	text-align: center;
+	padding:5px;
+	width: 12%; 
+
+}
