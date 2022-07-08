@@ -12,9 +12,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$('input[name="ptid"]').keyup(function(){
+		$('input[name="mno"]').keyup(function(){
 			$(this).val($(this).val().replace(/[^0-9]/g,''));
 		});
+
 	});
 </script>
 </head>

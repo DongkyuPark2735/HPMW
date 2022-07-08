@@ -195,7 +195,7 @@ public class EventsDAO {
 		PreparedStatement pstmt = null;
 		String sql = "INSERT INTO EVENTS(EVNO, EVTITLE, EVDETAIL, EVSTARTDATE, ETNO, MNO) " + 
 				" VALUES(TO_CHAR(SYSDATE, 'RRMMDD')||TRIM(TO_CHAR(EVENTS_SEQ.NEXTVAL, '009')), ?, ?," + 
-				" TO_DATE(?, 'YYYY/MM/DD'), ?, ?)";
+				" ?, ?, ?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -227,7 +227,7 @@ public class EventsDAO {
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE EVENTS SET EVTITLE = ?," + 
 				" EVDETAIL = ?," + 
-				" EVSTARTDATE = TO_DATE(?, 'YYYY/MM/DD')," + 
+				" EVSTARTDATE = ?," + 
 				" ETNO = ?," + 
 				" MNO = ?" + 
 				" WHERE EVNO = ?";

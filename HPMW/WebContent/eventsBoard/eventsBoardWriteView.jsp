@@ -20,6 +20,9 @@
 				}else if($('input[name="evtitle"]').val().length >= 150){
 						alert('제목을 150자 이내로 작성해주세요');
 						return false;
+				}else if($('input[name="evstartdate"]').val() == null){
+						alert('행사 일시를 입력해주세요');
+						return false;
 				};
 			});
 			$('textarea[name="evdetail"]').keyup(function () {
@@ -49,11 +52,13 @@
 	</script>
 </head>
 <body>
+<!-- 헤더 -->
 <jsp:include page="../main/header.jsp" />
 	<div class="bdr">
 		<div class="evheader">
 			<h2>행사 입력</h2>
 		</div>
+		
 		<form action="${conPath}/eventsBoardWrite.do" method="post">
 			<table>
 				<tr>
@@ -65,12 +70,12 @@
 					<th colspan="2">행사 상세정보</th>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td colspan="2" class="tempclass">
 						<div class="txtwrap" style="white-space: pre-wrap;">
 							<textarea rows="40" cols="100" name="evdetail"></textarea>
 						</div>
-						<h5 class="textResult"></h5>
 						<h5 class="lmitContentLength"></h5>
+						<h5 class="textResult"></h5>
 					</td>
 				</tr>
 			</table>

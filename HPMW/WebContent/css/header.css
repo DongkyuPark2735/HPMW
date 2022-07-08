@@ -23,8 +23,11 @@ ul {
 	justify-content: space-between;
 	width: 100%;
 	margin: 0 auto;
-	background-color: #517891;
+	background-color: #003057;
+	opacity: 0.9;
 }
+/* #headerBar #headerBarleft img{ */
+/* } */
 
 #headerBarleft{
 	padding-top : 10px;
@@ -51,3 +54,25 @@ ul {
 #headerBarRight ul>li:nth-child(1) {
 	border: 0;
 }
+
+/* .sidemini{ */
+/* 	width : 200px; */
+/* 	height: 300px; */
+/* 	background-color: #003057; */
+/* 	overflow:hidden;  */
+	
+/* } */
+/* .sidemini table { */
+	
+/* 	display : inline-block; */
+/* 	width : 200px; */
+/* 	height: 300px; */
+	
+	
+/* } */
+/* .sidemini table tr td{ */
+	
+/* } */
+
+
+

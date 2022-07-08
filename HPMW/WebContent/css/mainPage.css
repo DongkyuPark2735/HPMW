@@ -20,8 +20,6 @@ div.bdr h2{
 }
 
 .bdtitle {
-	margin: 0 auto;
-	margin-top : 100px;
 	font-size: 20px;
 	line-height: 10px;
 	width: 120px;
@@ -29,6 +27,8 @@ div.bdr h2{
 	border-bottom: 5px solid #517891;
 	text-align: center;
 	margin : 70px auto;
+	margin-top: 250px;
+	
 }
 
 div.bdr table{
@@ -50,10 +50,6 @@ div.bdr table tr td {
    padding: 20px;
 }
 
-div.bdr table tr:last-child td{
-   font-weight: bold;
-}
-
 th{
 	margin : 10px;
 	padding : 10px;
@@ -65,10 +61,26 @@ th{
 	border-radius: 10px;
 }
 div.bdr table tr td a{
-	color: #333;
+	color: white;
 }
 div.bdr table tr td a:hover{
-	color: #DBD1B4;
+	background-color: #517891;
+}
+
+div.bdr table tr:last-child td{
+   font-weight: bold;
+}
+div.bdr table tr:last-child td a{
+	display : inline-block;
+	text-decoration: none;
+	width: 170px;
+	height : 50px;
+	line-height : 50px;
+	border-radius : 10px;
+	background-color: #517891;
+}
+div.bdr table tr:last-child td a:hover{
+	background-color: #003057;
 }
 div.bdr table tr td p{
 	font-size: 15px;
@@ -77,4 +89,63 @@ div.bdr table tr td p{
 	line-height: 30px;
 	margin-top: 0;
 }
+
+
+.nbboardList table th:nth-child(1) {
+	width: 70px;
+}
+.nbboardList table th:nth-child(2) {
+	width: 100px;
+}
+.nbboardList table th:nth-child(3) {
+	width: 150px;
+}
+.nbboardList table th:nth-child(4) {
+}
+.nbboardList table th:nth-child(5) {
+	width: 70px;
+}
+.nbboardList table th:nth-child(6) {
+	width: 170px;
+}
+
+
+
+.evboardList table th:nth-child(1) {
+	width: 120px;
+}
+.evboardList table th:nth-child(2) {
+	width: 250px;
+}
+.evboardList table th:nth-child(3) {
+}
+.evboardList table th:nth-child(4) {
+	width: 150px;
+}
+.evboardList table th:nth-child(5) {
+	width: 80px;
+}
+.evboardList table th:nth-child(6) {
+	width: 100px;
+}
+
+
+
+.sgboardList table th:nth-child(1) {
+	width: 70px;
+}
+.sgboardList table th:nth-child(2) {
+	width: 100px;
+}
+.sgboardList table th:nth-child(3) {
+}
+.sgboardList table th:nth-child(4) {
+}
+.sgboardList table th:nth-child(5) {
+	width: 80px;
+}
+.sgboardList table th:nth-child(6) {
+	width: 150px;
+}
+
 	

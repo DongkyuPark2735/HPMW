@@ -17,7 +17,8 @@ public class ModifyParttimerInfoService implements Service {
 		ServletContext application = request.getServletContext();
 		String pcconno = (String)request.getAttribute("pcconno");
 		
-		application.setAttribute("blockParttimerContractInsert", "b"+pcconno);
+		application.setAttribute("blockParttimerContractInsert", "b"+pcconno); 
+		// 근로계약서 수정시 매니저 관리자가 마감 못하게 application에 값 추가 
 		System.out.println(application.getAttribute("blockParttimerContractInsert"));
 		ParttimerDTO parttimer = (ParttimerDTO)session.getAttribute("parttimer");
 		ParttimerDAO ptdao = ParttimerDAO.getInstance();

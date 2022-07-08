@@ -3,7 +3,7 @@
 SELECT * FROM MANAGER WHERE MNO = '1111111' AND MPW = '1';
 
 -- o매니저 관리자 생성 : int inSertManager(int mno, String mpw, String mname)  
-INSERT INTO MANAGER(MNO, MPW, MNAME, ALLEVEL) VALUES(1811009, '1811009', '김진태', 1);
+INSERT INTO MANAGER(MNO, MPW, MNAME, ALLEVEL) VALUES(1751432, '1751432', '정현철', 1);
 SELECT * FROM MANAGER;
 
 -- o매니저 관리자 삭제 : int deleteManager(int mno)
@@ -14,10 +14,12 @@ SELECT * FROM MANAGER WHERE ALLEVEL != 2;
 -- o매니저 관리자 아이디 중복체크 : int managerIdConfirm(int mno)
 SELECT * FROM MANAGER WHERE MNO = 1811009;
 
+select * from events;
 
 -- o근로계약서 목록 : ArrayList<EmployContractDTO> listEmployContract()
 SELECT * FROM EMPLOYCONTRACT;
 
+delete from events where etno = 30;
 -- o근로계약서 작성 : int insertEmployContract(EmployContractDTO ecdto)
 INSERT INTO EMPLOYCONTRACT(ECNO, ECTITLE, ECCONTENT)
     VALUES( TO_CHAR(SYSDATE, 'YYMMDD')||TRIM(TO_CHAR(EMPLOYCONTRACT_SEQ.NEXTVAL, '0009')), '현대산업개발호텔HDC근로계약서', 
@@ -35,8 +37,8 @@ UPDATE EMPLOYCONTRACT SET ECTITLE = '현대HDC호텔아이파크',
 DELETE FROM EMPLOYCONTRACT WHERE ECNO = '2207010003';                    
                               
 -- 파트타이머 입력 : int insertParttimer(int ptid int ptpw)
-INSERT INTO PARTTIMER(PTID, PTPW) VALUES(8888, 8888);
-
+INSERT INTO PARTTIMER(PTID, PTPW) VALUES(1548, 1548);
+select * from PARTTIMER;
 commit;
 -- 공지사항 관련 : NoticeBoardDAO
 -- o공지사항 글 목록 : ArrayList<NoticeBoardDTO> listNoticeBoard(int startRow, int endRow)
@@ -44,7 +46,7 @@ SELECT *
     FROM (SELECT  ROWNUM RN, A.*
                  FROM (SELECT * FROM NOTICEBOARD ORDER BY NBRDATE DESC) A)
                              WHERE RN BETWEEN 1 AND 10;
-
+commit;
 -- 공지사항글 상세보기용 DTO가져오기 : NoticeBoardDTO detailNoticeBoard(int nbno)
 -- o글상세보기전 조회수 올리기 : void noticeBoardhitCountUp(int nbno)
 UPDATE NOTICEBOARD SET NBHIT = NBHIT + 1
@@ -61,6 +63,7 @@ UPDATE NOTICEBOARD SET MNO = 1212120,
                                   NBCONTENT = '공지사항 내용 수정',
                                   NBFILENAME = 'IMG.JPG'
                                   WHERE NBNO = 1;
+SELECT * FROM NOTICEBOARD;
 
 -- o공지사항 글 삭제 : int deleteNoticeBoard(int mno, int nbno)
 DELETE FROM NOTICEBOARD WHERE MNO = 1811009 AND NBNO = 3;
@@ -138,7 +141,7 @@ UPDATE SUGGESTIONBOARD SET SBTITLE = '수정된 답글1',
                            SBIP = '123.152.125.12'
                         WHERE SBNO = 5 AND SBPW = 1;
 
-select * from events;
+select to_char(evstartdate, 'MM"월"DD"일"DY"요일"') from events order by evstartdate desc;
 
 
 -- 파트타이머 근로계약서 관련 : ParttimerContractDAO PARTTIMERCONTRACT
@@ -220,7 +223,7 @@ INSERT INTO PARTTIMERCONTRACT(PTCONNO, PTID, PTNAME, PTTEL, PTEMAIL, PTADDRESS, 
 commit;
 DELETE FROM PARTTIMERCONTRACT WHERE PTCONNO = '00000087';
 select * from parttimer;
-update parttimer set ptempconchek = 0 where ptid = 1234; 
+update parttimer set ptempconchek = 0 where ptid = 5555; 
 -- 파트타이머 근로계약서 작성후 PTEMPCONCHEK 수정 
 UPDATE PARTTIMER SET PTEMPCONCHEK = 1 WHERE PTID = '8888';
 

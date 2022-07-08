@@ -22,10 +22,10 @@
 	$(document).ready(function() {
 		var jbOffset = $('#lnb').offset();
 		$(window).scroll(function() {
-			if ($(document).scrollTop() > jbOffset.top) {
-					$('#lnb').attr('id','lnbFixed');
+			if ($(document).scrollTop() >= (jbOffset.top)) {
+				$('#lnb').attr('id','lnbFixed');
 			}else {
-					$('#lnb').removeAttr('id');
+				$('#lnb').removeAttr('id');
       }
     });
   });
@@ -63,6 +63,16 @@
 							<li><a href="${conPath }/logout.do">로그아웃</a></li>
 						</ul>
 					</div>
+<!-- 					<div class="sidemini"> -->
+<!-- 						<table> -->
+<!-- 							<tr> -->
+<!-- 								<th>사이드 제목</th> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<td>사이드바 </td> -->
+<!-- 							</tr> -->
+<!-- 						</table>					 -->
+<!-- 					</div> -->
 				</div>
 			</c:if>
 			<c:if test="${manager.allevel eq 1 }">

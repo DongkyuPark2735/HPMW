@@ -54,6 +54,7 @@
   	<div class="bdtitle">
 			<h2>공지사항 게시글</h2>
   	</div>
+  	<div class="nbboardList">
 			<table>
 				<tr>
 					<th>글 번호</th>
@@ -65,10 +66,15 @@
 				</tr>
 				<c:if test="${empty noticeBoardList}">
 					<tr>
-						<td>
-							<p>공지사항 게시글이 없습니다.</p>
+						<td colspan="6">
+							<h2>공지사항 게시글이 없습니다.</h2>					
 						</td>
 					</tr>
+					<tr>
+							<td colspan="6">
+								<a href="${conPath }/noticeBoardList.do">공지사항 글 더보기 </a>
+							</td>
+						</tr>
 				</c:if>
 				<c:if test="${not empty noticeBoardList}">
 					<c:forEach items="${noticeBoardList }" var="noticeBoardLists" >
@@ -88,10 +94,12 @@
 						</tr>
 				</c:if>
 			</table>
+  	 </div>
 	  <!-- 행사 출력 10개만  -->
 	  <div class="bdtitle">
 			<h2>행 사</h2>
   	</div>
+	 	<div class="evboardList">
 		<table>
 			<tr>
 				<th>행사 번호</th>
@@ -103,10 +111,15 @@
 			</tr>
 			<c:if test="${empty eventsList}">
 				<tr>
-					<td>
-						<p>행사가 없습니다.</p>
+					<td colspan="6">
+						<h2>행사가 없습니다.</h2>
 					</td>
 				</tr>
+				<tr>
+						<td colspan="6">
+							<a href="${conPath }/eventsBoardList.do">행사 더보기 </a>
+						</td>
+					</tr>
 			</c:if>
 			<c:if test="${not empty eventsList}">
 				<c:forEach items="${eventsList }" var="eventsLists">
@@ -126,11 +139,13 @@
 					</tr>
 			</c:if>
 		</table>
+   </div>
 		
 	  <!-- 건의사항게시판 출력 10개만  -->
 		<div class="bdtitle">
 			<h2>건의사항게시판</h2>
   	</div>
+	  <div class="sgboardList">
 		<table>
 			<tr>
 				<th>글 번호</th>
@@ -140,12 +155,18 @@
 				<th>조회수</th>
 				<th>작성일</th>
 			</tr>
+			
 			<c:if test="${empty suggestionBoardList}">
 				<tr>
-					<td>
-						<p>건의게시글이 없습니다.</p>
+					<td colspan="6">
+						<h2>건의게시글이 없습니다.</h2>	
 					</td>
 				</tr>
+				<tr>
+						<td colspan="6">
+							<a href="${conPath }/eventsBoardList.do">건의 게시글 더보기 </a>
+						</td>
+					</tr>
 			</c:if>
 			<c:if test="${not empty suggestionBoardList}">
 				<c:forEach items="${suggestionBoardList }" var="suggestionBoardLists">
@@ -166,9 +187,15 @@
 						<td>${suggestionBoardLists.sbhit }</td>
 						<td><fmt:formatDate value="${suggestionBoardLists.sbrdate }" pattern="yy-MM-dd(E)"/></td>
 					</tr>
-				</c:forEach>		
+				</c:forEach>	
+					<tr>
+						<td colspan="6">
+							<a href="${conPath }/eventsBoardList.do">건의 게시글 더보기 </a>
+						</td>
+					</tr>	
 			</c:if>
 		</table>
+  	</div>
 	 </div>
 	</c:if>
 	
@@ -215,10 +242,15 @@
 			</tr>
 			<c:if test="${empty noticeBoardList}">
 				<tr>
-					<td>
-						<p>공지사항 게시글이 없습니다.</p>
+					<td colspan="6">
+						<h2>공지사항 게시글이 없습니다.</h2>
 					</td>
 				</tr>
+				<tr>
+						<td colspan="6">
+							<a href="${conPath }/noticeBoardList.do">공지사항 글 더보기 </a>
+						</td>
+					</tr>
 			</c:if>
 			<c:if test="${not empty noticeBoardList}">
 				<c:forEach items="${noticeBoardList }" var="noticeBoardLists" >
@@ -254,8 +286,13 @@
 			</tr>
 			<c:if test="${empty eventsList}">
 				<tr>
-					<td>
-						<p>행사가 없습니다.</p>
+					<td colspan="6">
+						<h2>행사가 없습니다.</h2>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6">
+						<a href="${conPath }/eventsBoardList.do">행사 더보기 </a>
 					</td>
 				</tr>
 			</c:if>
@@ -293,10 +330,15 @@
 			</tr>
 			<c:if test="${empty suggestionBoardList}">
 				<tr>
-					<td>
-						<p>건의게시글이 없습니다.</p>
+					<td colspan="6">
+						<h2>건의게시글이 없습니다.</h2>
 					</td>
 				</tr>
+				<tr>
+					<td colspan="6">
+						<a href="${conPath }/eventsBoardList.do">건의 게시글 더보기 </a>
+					</td>
+				</tr>	
 			</c:if>
 			<c:if test="${not empty suggestionBoardList}">
 				<c:forEach items="${suggestionBoardList }" var="suggestionBoardLists">
@@ -318,6 +360,11 @@
 						<td><fmt:formatDate value="${suggestionBoardLists.sbrdate }" pattern="yy-MM-dd(E)"/></td>
 					</tr>
 				</c:forEach>		
+				<tr>
+					<td colspan="6">
+						<a href="${conPath }/eventsBoardList.do">건의 게시글 더보기 </a>
+					</td>
+				</tr>	
 			</c:if>
 		</table>
 	 </div>

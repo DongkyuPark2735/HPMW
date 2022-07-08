@@ -78,7 +78,7 @@ public class HPMWController extends HttpServlet {
 			viewPage = "main/main.jsp";
 			///// 부서 관리자 부분 //////
 			///// 근로계약서 양식//////
-		} else if (com.equals("/empContractView.do")) { // 근로계약서 양식 리스트 페이지 이동
+		} else if (com.equals("/empContractView.do")) { // 근로계약서 서식 수정 페이지 이동
 			service = new EmpContractViewService();
 			service.execute(request, response);
 			viewPage = "employContract/empContractView.jsp";
@@ -166,7 +166,7 @@ public class HPMWController extends HttpServlet {
 			service.execute(request, response);
 			viewPage = "eventsBoard/eventsBoardWriteView.jsp";
 		} else if (com.equals("/eventsBoardWrite.do")) { // 행사 입력
-			service = new EventsBoardWriteService(); ///////// 페이지 번호 에러
+			service = new EventsBoardWriteService(); 
 			service.execute(request, response);
 			viewPage = "eventsBoardList.do";
 			/////// 파트타이머 관리 관련 ///////

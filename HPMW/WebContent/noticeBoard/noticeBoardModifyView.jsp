@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/noticeBoardPage.css" rel="stylesheet">
+<link href="${conPath }/css/nbboardPage.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 			$(document).ready(function() {
@@ -28,6 +28,22 @@
 						$('.lmitContentLength').html('<b color="red">'+contentlength+'/4000</b>')
 					};
 				});
+				/* 행사글 특수문자 입력 제한  */
+				$("input, textarea").keyup(function() {
+					var value = $(this).val();
+					var arrchar = new Array();
+					arrchar.push("'");
+					arrchar.push("<");
+					arrchar.push(">");
+					$('.textResult').text("");
+					for (var i = 0; i < arrchar.length; i++) {
+						if (value.indexOf(arrchar[i]) != -1) {
+							$('.textResult').text("<, >, ' 특수문자는 사용하실 수 없습니다.");
+							value = value.substr(0, value.indexOf(arrchar[i]));
+							$(this).val(value);
+						}
+					}
+				});
 			});
 	</script>
 </head>
@@ -39,9 +55,9 @@
 			<input type="hidden" name="pageNum" value="${pageNum}">
 			<input type="hidden" name="oldnbfilename" value="${NoticeBoardDetail.nbfilename}">
 			<input type="hidden" name="nbno" value="${NoticeBoardDetail.nbno}">
-			<div class="bcHeader">
-				<h2>${noticBoardDetail.nbno }번 공지사항 상세보기</h2>
-			</div>
+		 <div class="nbheader">
+			 <h2>${noticBoardDetail.nbno }번 공지사항 상세보기</h2>
+		 </div>
 			<table>
 				<tr>
 					<th>제목</th>
@@ -53,25 +69,32 @@
 					<td><input type="text" name="mname" value="${manager.mname }(${manager.mno })" readonly="readonly"></td>
 				</tr>
 				<tr>
-					<th>본문</th>
-					<td>
-						<textarea name="nbcontent" rows="30" cols="80">${NoticeBoardDetail.nbcontent}</textarea>
-					 </td>
+					<th colspan="2">본문</th>
 				</tr>
 				<tr>
-					<td><p class="lmitContentLength"></p></td>
+					<td colspan="2">
+					 <div class="txtwrap" style="white-space: pre-wrap;">
+						<textarea name="nbcontent" rows="30" cols="80">${NoticeBoardDetail.nbcontent }</textarea>
+					 </div>	
+						<h5 class="textResult"></h5>
+					 	<h5 class="lmitContentLength"></h5>
+				 </td>
 				</tr>
 				<tr>
 					<th>첨부파일</th>
 					<td>
 						<input type="file" name="nbfilename" >
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="imgwrap">
 						<img src="${conPath }/noticeBoardFile/${NoticeBoardDetail.nbfilename}" width="300" height="300">
 					</td>
 				</tr>
 				<tr class="nbinput">
 					<td colspan="2">
 							<input type="submit" value="글수정" class="btn">
-							<input type="reset" value="취소" class="btn">
+							<input type="button" value="취소" class="btn" onclick="location.href='${conPath}/noticeBoardList.do?pageNum=${pageNum}'">
 							<input type="button" value="목록" class="btn"	 onclick="location.href='${conPath}/noticeBoardList.do?pageNum=${pageNum}'">
 					</td>
 				</tr>	

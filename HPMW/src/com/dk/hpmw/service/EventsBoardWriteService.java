@@ -23,6 +23,7 @@ public class EventsBoardWriteService implements Service {
 			String evtitle = request.getParameter("evtitle");
 			String evdetail = request.getParameter("evdetail");;
 			String tempevstartdate = request.getParameter("evstartdate");
+			//System.out.println(tempevstartdate);
 			Date evstartdate = Date.valueOf(tempevstartdate); 
 			String tempetno = request.getParameter("etno");
 			int etno = Integer.parseInt(tempetno.toString().substring(0, 2));
@@ -32,7 +33,7 @@ public class EventsBoardWriteService implements Service {
 			evdto.setEvstartdate(evstartdate);
 			evdto.setEvtitle(evtitle);
 			evdto.setMno(mno);
-			
+			//System.out.println("evdto : "+evdto);
 			EventsDAO evdao = EventsDAO.getInstance();
 			int result = evdao.insertEvents(evdto);
 			

@@ -9,27 +9,26 @@ div.bdr{
 	margin: 0 auto;
 }
 
-.bdr .evheader{
+.bdr .mheader{
 	margin: 0 auto;
 	margin-top : 100px;
 	margin-bottom : 50px;
 	font-size: 20px;
 	line-height: 10px;
-	width: 80px;
+	width: 130px;
 	border-top: 5px solid #517891;
 	border-bottom: 5px solid #517891;
 	text-align: center;
 	color : #003057;
 }
 
-.bdr .evheader h2{
+.bdr .mheader h2{
 	width: 200%;
 	margin-left: -50%;
 	line-height: 20px;
 	margin-bottom: 20px;
 	margin-top: 20px;
 }
-
 
 div.bdr h2{
 	font-size: 25px;
@@ -43,13 +42,6 @@ div.bdr table{
 	/* 테이블 넘치는거 고정 */
 	table-layout: fixed;
 }
-hr{
-	margin: 20px auto;
-	width: 90%;
-	height: 5px;
-	background-color: #003057;
-	border-radius: 10px; 
-}
 
 div.bdr table th,td{
 	line-height: 30px;
@@ -59,23 +51,12 @@ div.bdr table th,td{
 	text-overflow: ellipsis;
 }
 
-.pcinfoform{
-	width: 80%;
-	text-align: center;
-	margin: 0 auto;
-}
 
 div.bdr table tr td {
    text-align: center;
-   padding: 20px;
    border-bottom: 2px solid #517891;
 	 padding: 5px;
 	 
-}
-select {
-	border: 2px solid #003057; 
-	border-radius: 10px;
-	height: 30px;
 }
 
 th{
@@ -84,7 +65,7 @@ th{
 	background-color: #517891;
 	line-height: 30px;
 	font-size: 14px;
-	width: 120px;
+	width: 130px;
 	color: white;
 	border-radius: 10px;
 }
@@ -92,33 +73,19 @@ td{
 	height: 40px;
 }
 
-textarea{
-	border: 2px solid #003057; 
-	width: 99%;
-	height : 100%;
-	border-radius: 10px;
-	padding: 0;
-}
-
-.bdr table tr:nth-child(4) td{
-	line-height: 0;
-}
-.evbottom tr:last-child td{
-	padding-top: 50px; 
-	padding-bottom: 100px; 
-}
-
-.bdr table tr:nth-child(4) td{
+.bdr table tr:last-child td{
 	border-bottom: none;
+	padding-bottom: 100px;
+	padding-top: 20px;
+	
 }
-
-.bdr input[type="text"]{
+.bdr input[type="text"], .bdr input[type="password"]{
 	width: 90%;
 	height : 90%;
 	size: 30px;
 }
 
-.evbottom input[type="submit"], .evbottom input[type="button"]{
+input[type="submit"], input[type="button"]{
 	background-color : #517891;
 	border: none;
 	width: 150px;
@@ -126,10 +93,6 @@ textarea{
 	font-size: 14px;
 	border-radius: 10px;
 	color : white;
-}
-.bdr table tr:nth-child(3) td.tempclass{
-	line-height: 0;
-	border-bottom: none;
 }
 
 input{

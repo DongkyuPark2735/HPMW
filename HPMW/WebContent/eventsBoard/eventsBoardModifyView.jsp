@@ -20,6 +20,9 @@
 				}else if($('input[name="evtitle"]').val().length >= 150){
 						alert('제목을 150자 이내로 작성해주세요');
 						return false;
+				}else if($('input[name="evstartdate"]').val() == null){
+					alert('행사 일시를 입력해주세요');
+					return false;
 				};
 			});
 			$('textarea[name="evdetail"]').keyup(function () {
@@ -51,37 +54,46 @@
 <body>
 <!-- 헤더 -->
 <jsp:include page="../main/header.jsp" />
+	<div class="bdr">
+		<div class="evheader">
+			<h2>${EventsDetail.evno }번<br><br> 행사 수정</h2>
+		</div>
 		
 		<form action="${conPath}/eventsBoardModify.do" method="post">
 			<input type="hidden" name="pageNum" value="${pageNum }">
 			<table>
-				<caption>${EventsDetail.evno }번 행사 수정</caption>
 				<tr>
-					<td>행사번호</td>
+					<th>행사번호</th>
 					<td>
 						<input type="text" name="evno" value="${EventsDetail.evno }" readonly="readonly">
 					</td>
 				</tr>
 				<tr>
-					<td>행사명</td>
+					<th>행사명</th>
 					<td>
 						<input type="text" name="evtitle" required="required" value="${EventsDetail.evtitle }"></td>
 				</tr>
 				<tr>
-					<td>행사 상세정보</td>
-					<td>
+					<th colspan="2">행사 상세정보</th>
+				</tr>
+				<tr>
+					<td colspan="2">
+					 <div class="txtwrap" style="white-space: pre-wrap;">
 						<textarea rows="40" cols="100" name="evdetail">${EventsDetail.evdetail }</textarea>
+					 </div>
+						<h5 class="lmitContentLength"></h5>
+					  <h5 class="textResult"></h5>
 					</td>
 				</tr>
+			</table>
+
+			<table class="evbottom">
 				<tr>
-					<td colspan="2"><p class="lmitContentLength"></p></td>
-				</tr>
-				<tr>
-					<td>행사 일시</td>
+					<th>행사 일시</th>
 					<td><input type="text" name="evstartdate" id="evstartdate" value="${EventsDetail.evstartdate}"></td>
 				</tr>
 				<tr>
-					<td>행사 유형</td>
+					<th>행사 유형</th>
 					<td>
 						<select name="etno">
 							<c:forEach var="evtype" items="${evtypelist }">
@@ -96,14 +108,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td>작성자</td>
+					<th>작성자</th>
 					<td>
 						<input type="text" value="${manager.mno }" name="mno" readonly="readonly">
 					</td>
 				</tr>
-				<tr>
-					<td><p class="textResult"></p></td>
-				</tr>
+				
 				<tr>
 					<td colspan="2">
 							<input type="submit" value="수정" class="btn">
@@ -114,6 +124,7 @@
 				</tr>	
 			</table>
 		</form>
+	</div>
 </body>
  <!-- datepicker -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">

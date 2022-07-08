@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style></style>
+<link href="${conPath }/css/managerinsertPage.css" rel="stylesheet"> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 	$(document).ready(function(){
@@ -38,6 +38,12 @@
 				return false;
 			}// 사번 사용가능일시 입력한 사번으로 비밀번호 설정
 		});
+		$('input[name="mname"]').on("keyup", function(){  
+			$(this).val($(this).val().replace(/[^가-힣a-zA-Z ]/g,''));
+		});
+		$('input[name="mno"]').on("keyup", function(){ 
+			$(this).val($(this).val().replace(/[^0-9]/g,''));
+		});
 	});
 	</script>
 </head>
@@ -45,31 +51,40 @@
 	<!-- 해더 -->
 	<jsp:include page="../main/header.jsp" />
 	<!-- 매니저 입력 -->
-	<p>매니저 입력</p>
-	<form action="${conPath }/managerInsert.do" method="get">
-		<table>
-			<tr>
-				<td>
-					사번 <input type="text" name="mno" required="required">
-				</td>		
-				<td>
-					비밀번호 <input type="password" name="mpw" required="required" 
-											 placeholder="최초 비밀번호는 사번으로 자동지정됩니다." readonly="readonly" value="">
-				</td>		
-				<td>
-					사원 이름 <input type="text" name="mname" required="required">
-				</td>		
-				<td>
-					<p class="managerIdChkResult"></p>
-				</td>		
-			</tr>
-			<tr>
-				<td>
-					<input type="submit" value="입력">
-					<input type="reset" value="취소" onclick="history.back();">
-				</td>
-			</tr>
-		</table>
-	</form>
+	<div class="bdr">
+	 <div class="mheader">
+		<h2>매니저 입력</h2>
+	 </div>
+		<form action="${conPath }/managerInsert.do" method="get">
+			<table>
+				<tr>
+					<th>사번</th>
+					<td>
+					  <input type="text" name="mno" required="required" maxlength="7">
+					</td>
+				</tr>
+				<tr>
+				 	<th>비밀번호</th>		
+					<td>
+						<input type="password" name="mpw" required="required" 
+												 placeholder="최초 비밀번호는 사번으로 자동지정됩니다." readonly="readonly" value="">
+					</td>
+				</tr>
+				<tr>
+					<th>사원 이름</th>		
+					<td>
+						<input type="text" name="mname" required="required">
+					</td>		
+				</tr>
+				<tr>
+					<td colspan="2">
+						<h4 class="managerIdChkResult"></h4>
+						<input type="submit" value="입력">
+						<input type="button" value="취소" onclick="history.back();">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </body>
 </html>

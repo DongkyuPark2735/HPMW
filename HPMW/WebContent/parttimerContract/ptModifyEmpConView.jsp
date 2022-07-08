@@ -19,7 +19,7 @@
  				$(this).val($(this).val().replace(/,/g,''));
  				$(this).val($(this).val().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
  			});
-			// 시급계산  //// 미완성///////////
+			// 시급계산  
 	  	$('input[name="calculatePay"]').click(function (){
 	  		var starttime = $('input[name="startTime"]').val().substring(0,2);
 	  		var endtime = $('input[name="endTime"]').val().substring(0,2);

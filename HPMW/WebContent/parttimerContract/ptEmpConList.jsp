@@ -71,7 +71,7 @@
 		<table class="writeButton">
 			<tr>
 				<td>
-					<input type="button" class="btn" value="지난 근로계약서 보기" onclick="location.href='${conPath }/pastptEmpConList.do'">
+					<input type="button" class="btn" value="마감된 근로계약서 보기" onclick="location.href='${conPath }/pastptEmpConList.do'">
 				</td>
 			</tr>
 		</table>

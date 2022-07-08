@@ -93,7 +93,7 @@
 			</tr>
 			<c:if test="${totCnt==0 }">
 				<tr>
-					<td colspan="6">등록된 행사가 없습니다</td>
+					<td colspan="6"><h2>등록된 행사가 없습니다</h2></td>
 				</tr>
 			</c:if>
 			<!-- 행사 목록 출력 -->

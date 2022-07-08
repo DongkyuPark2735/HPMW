@@ -9,20 +9,20 @@ div.bdr{
 	margin: 0 auto;
 }
 
-.bdr .evheader{
+.bdr .echeader{
 	margin: 0 auto;
 	margin-top : 100px;
 	margin-bottom : 50px;
 	font-size: 20px;
 	line-height: 10px;
-	width: 80px;
+	width: 130px;
 	border-top: 5px solid #517891;
 	border-bottom: 5px solid #517891;
 	text-align: center;
 	color : #003057;
 }
 
-.bdr .evheader h2{
+.bdr .echeader h2{
 	width: 200%;
 	margin-left: -50%;
 	line-height: 20px;
@@ -59,15 +59,9 @@ div.bdr table th,td{
 	text-overflow: ellipsis;
 }
 
-.pcinfoform{
-	width: 80%;
-	text-align: center;
-	margin: 0 auto;
-}
 
 div.bdr table tr td {
    text-align: center;
-   padding: 20px;
    border-bottom: 2px solid #517891;
 	 padding: 5px;
 	 
@@ -84,7 +78,7 @@ th{
 	background-color: #517891;
 	line-height: 30px;
 	font-size: 14px;
-	width: 120px;
+	width: 130px;
 	color: white;
 	border-radius: 10px;
 }
@@ -94,31 +88,35 @@ td{
 
 textarea{
 	border: 2px solid #003057; 
-	width: 99%;
-	height : 100%;
+	width: 97%;
 	border-radius: 10px;
-	padding: 0;
+	padding: 10px;
+/* 	margin-top: -50px; */
+	margin-bottom: 0;
 }
 
-.bdr table tr:nth-child(4) td{
+.bdr table tr:nth-child(2) td .txtwrap{
 	line-height: 0;
 }
-.evbottom tr:last-child td{
-	padding-top: 50px; 
-	padding-bottom: 100px; 
-}
-
-.bdr table tr:nth-child(4) td{
+.bdr table tr:nth-child(2) td{
+	height : 100px;
 	border-bottom: none;
+	margin-top: 0;
+	padding-top: 0;
 }
 
+.bdr table tr:last-child td{
+	border-bottom: none;
+	padding-top : 50px;
+	padding-bottom: 100px;
+}
 .bdr input[type="text"]{
 	width: 90%;
 	height : 90%;
 	size: 30px;
 }
 
-.evbottom input[type="submit"], .evbottom input[type="button"]{
+input[type="submit"], input[type="button"]{
 	background-color : #517891;
 	border: none;
 	width: 150px;
@@ -126,10 +124,6 @@ textarea{
 	font-size: 14px;
 	border-radius: 10px;
 	color : white;
-}
-.bdr table tr:nth-child(3) td.tempclass{
-	line-height: 0;
-	border-bottom: none;
 }
 
 input{
