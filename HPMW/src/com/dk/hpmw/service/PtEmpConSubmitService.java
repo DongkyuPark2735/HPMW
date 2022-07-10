@@ -36,11 +36,13 @@ public class PtEmpConSubmitService implements Service {
 				// 마감상태 입력 성공시 계약서 정보  데이터테이블에 저장
 				int resultpastdate = ppcddao.insertPastParttimerContractData(ptcdto);
 				if(resultpastdate == ParttimerContractDAO.ParttimerContractInsetSUCCESS) {
+					
 					// 기존 아이디에 계약서 작성 상태 초기화
 					ParttimerDAO pdao = ParttimerDAO.getInstance();
 					int resultdeleteconchek = pdao.deleteParttimerPtempconchek(ptcdto.getPtid());
-					int resultdelete = pcdao.deleteParttimerContract(ptconno);
+					
 					// 데이터 테이블에 저장 성공시 기존 계약서 삭제 
+					int resultdelete = pcdao.deleteParttimerContract(ptconno);
 					if(resultdelete == ParttimerDAO.ParttimerLoginSUCCESS && resultdeleteconchek == ParttimerDAO.ParttimerLoginSUCCESS) {
 						request.setAttribute("parttimerSubmitResult", "해당 근로계약서 마감처리 되었습니다.");
 					}else {

@@ -46,7 +46,12 @@
 				<tr>
 					<th>첨부파일</th>
 					<td>
+					 <c:if test="${not empty noticBoardDetail.nbfilename }">
 						<img src="${conPath }/noticeBoardFile/${noticBoardDetail.nbfilename }" width="300" height="300"> 
+					 </c:if>
+					 <c:if test="${empty noticBoardDetail.nbfilename }">
+						<img src="${conPath }/noticeBoardFile/img.png" width="300" height="300"> 
+					 </c:if>
 					</td>
 				</tr>
 				<tr>

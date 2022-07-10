@@ -78,15 +78,15 @@
 			<h2>공지사항 게시판</h2>
 		</div>
 
+	<c:if test="${not empty manager }">
 		<table class="writeButton">
 			<tr>
 				<td>
-					<c:if test="${not empty manager }">
 						<a href="${conPath }/noticeBoardWriteView.do">글쓰기</a>
-					</c:if>
 				</td>
 			</tr>
 		</table>
+	</c:if>
 
 		<table>
 			<tr>

@@ -174,7 +174,7 @@ public class HPMWController extends HttpServlet {
 			service = new PtEmpConListService();
 			service.execute(request, response);
 			viewPage = "parttimerContract/ptEmpConList.jsp";
-		} else if (com.equals("/pastptEmpConList.do")) { // 파트타이머 지난 근로계약서 리스트
+		} else if (com.equals("/pastptEmpConList.do")) { // 파트타이머 마감된 근로계약서 리스트
 			service = new PastPtEmpConListService();
 			service.execute(request, response);
 			viewPage = "parttimerContract/pastptEmpConList.jsp";

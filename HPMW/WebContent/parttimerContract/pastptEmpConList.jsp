@@ -12,14 +12,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 /* 글 상세보기 리스트 클릭시  */
-	/* $(document).ready(function() {
-		$('.pcContractDetail').click(function(){
-			var ptconno = $(this).siblings('.pcContractno').text();
-			if(!isNaN(ptconno)){
-				location.href = '${conPath}/ptModifyEmpConView.do?ptconno='+ptconno+'&pageNum=${pageNum}';
-			}
-		});
-	}); */
+//   $(document).ready(function() {
+// 		$('tr').click(function(){
+// 			var ptconno = $(this).siblings('.pcContractno').text();
+// 			if(!isNaN(ptconno)){
+// 				location.href = '${conPath}/ptModifyEmpConView.do?ptconno='+ptconno+'&pageNum=${pageNum}';
+// 			}
+// 		});
+// 	});
 </script>
 </head>
 <body>

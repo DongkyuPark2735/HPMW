@@ -73,15 +73,15 @@
 		<div class="blHeader">
 			<h2>행사 정보 게시판</h2>
 		</div>
+	<c:if test="${not empty manager }">
 		<table class="writeButton">
 			<tr>
 				<td>
-					<c:if test="${not empty manager }">
 						<a href="${conPath }/eventsBoardWriteView.do">행사 입력</a>
-					</c:if>
 				</td>
 			</tr>
 		</table>
+	</c:if>
 		<table>
 			<tr>
 				<th>행사 번호</th>
