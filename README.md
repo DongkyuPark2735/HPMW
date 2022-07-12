@@ -1,6 +1,6 @@
-호텔 파트타이머 관리 시스템
+# 호텔 파트타이머 관리 시스템
 
-개인 프로젝트
+> 개인 프로젝트
 
 - 프로젝트 명 : Hotel Parttimer Management System <br>
 - 인 원 : 1 명 <br>
@@ -13,32 +13,33 @@
 	          파트타이머와의 커뮤니케이션을 위한 게시판 기능,<br>
 	          서비스질 향상을 위한 행사 정보 제공 기능을 제공한다.
 
+
 ### 작업분할 구조도
-<br>
+
 ![슬라이드6](https://user-images.githubusercontent.com/101309367/178390145-e47d0b80-ac53-426b-9909-5b7b0eae82b5.JPG)
 
-### Gantt chart
-<br>
+### Gantt chart<br>
+
 ![슬라이드7](https://user-images.githubusercontent.com/101309367/178390147-016fa8c2-e10a-4cdd-9de3-21013cdca2e6.JPG)
 
-### Usecase Diagram
-<br>
+### Usecase Diagram<br>
+
 ![슬라이드11](https://user-images.githubusercontent.com/101309367/178389990-4167cdca-30f9-4c20-b2b2-1241e4c1a76a.JPG)
 
-### eXERD Diagram
-<br>
+### eXERD Diagram<br>
+
 ![슬라이드16](https://user-images.githubusercontent.com/101309367/178390031-a2ea166d-0e69-40d6-8b7d-29a871326182.JPG)
 
-### 기능정의서
-<br>
+### 기능정의서<br>
+
 ![슬라이드15](https://user-images.githubusercontent.com/101309367/178390020-072c3b86-bb5a-4eb4-ae39-b7ef897acc80.JPG)
 
-### Project Source Explorer
-<br>
+### Project Source Explorer<br>
+
 ![슬라이드17](https://user-images.githubusercontent.com/101309367/178390040-262e8e3e-8cdc-41be-b894-d617ae39345b.JPG)
 
-### 실행화면
-<br>
+### 실행화면<br>
+
 ![슬라이드18](https://user-images.githubusercontent.com/101309367/178390046-17526a1e-3d22-4faf-8c0c-98a74b191861.JPG)
 ![슬라이드19](https://user-images.githubusercontent.com/101309367/178390059-b90d4ad9-673f-45d3-b8b7-58694cf6d8bd.JPG)
 ![슬라이드20](https://user-images.githubusercontent.com/101309367/178390068-f392b2c1-a2f5-4677-9a33-f9763917719e.JPG)
@@ -54,4 +55,3 @@
 ![슬라이드30](https://user-images.githubusercontent.com/101309367/178390118-714016e5-7d53-4cef-8f56-72ba9fb3dcf5.JPG)
 ![슬라이드31](https://user-images.githubusercontent.com/101309367/178390123-9579a49b-9177-4d3b-b6c8-85768cd791cc.JPG)
 ![슬라이드32](https://user-images.githubusercontent.com/101309367/178390125-0321adcb-aa44-4e85-9ffe-19e0eafe5351.JPG)
-
